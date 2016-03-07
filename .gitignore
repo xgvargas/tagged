@@ -1,0 +1,4 @@
+/tagged/*.js
+/tagged/*.css
+/node_modules
+tagged/icon*.png

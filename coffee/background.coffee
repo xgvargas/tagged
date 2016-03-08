@@ -12,3 +12,7 @@ chrome.omnibox.onInputChanged.addListener (text, suggest) ->
 
 chrome.omnibox.onInputEntered.addListener (string, disposition) ->
     alert "abrindo a pagina #{string}"
+
+chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
+
+chrome.tabs.onUpdated.addListener (activeInfo) ->

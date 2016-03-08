@@ -14,15 +14,13 @@ gulp.task('build', ['sass', 'coffee', 'jade']);
 
 gulp.task('sass', function() {
     return gulp.src('scss/*.scss')
-        .pipe(sass({
-            errLogToConsole: true
-        }))
+        .pipe(sass({ errLogToConsole: true })) .on('error', console.log)
         .pipe(gulp.dest('tagged/'));
 });
 
 gulp.task('coffee', function() {
     return gulp.src('coffee/*.coffee')
-        .pipe(coffee({bare: false}))
+        .pipe(coffee({ bare: false })) .on('error', console.log)
         .pipe(gulp.dest('tagged/'))
 });
 
@@ -34,6 +32,6 @@ gulp.task('jade', function() {
             locals: LOCALS,
             client: false,
             pretty: true,
-        }))
+        })) .on('error', console.log)
         .pipe(gulp.dest('tagged/'))
 });

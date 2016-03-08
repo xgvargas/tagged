@@ -1,4 +1,12 @@
-save_options = ->
+
+document.addEventListener 'DOMContentLoaded', ->
+    chrome.storage.sync.get
+        jwt: 'bugaluga'
+    ,
+        (items) ->
+            document.getElementById('jwt').value = items.jwt
+
+document.getElementById('save').addEventListener 'click', ->
     jwt = document.getElementById('jwt').value
     chrome.storage.sync.set
         jwt: jwt
@@ -10,13 +18,3 @@ save_options = ->
                 status.textContent = ''
             ,
                 750
-
-restore_options = ->
-    chrome.storage.sync.get
-        jwt: 'bugaluga'
-    ,
-        (items) ->
-            document.getElementById('jwt').value = items.jwt
-
-document.addEventListener 'DOMContentLoaded', restore_options
-document.getElementById('save').addEventListener 'click', save_options

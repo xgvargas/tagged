@@ -3,3 +3,4 @@
 /tagged/*.html
 /node_modules
 tagged/icon*.png
+/bower_components

@@ -2,18 +2,52 @@ doctype html
 html(ng-app="manager")
   head
     title Tagged
+    meta(charset="utf-8")
     meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
     link(type="text/css" rel="stylesheet" href="lib/angular-material.min.css")
     link(type="text/css" rel="stylesheet" href="manager.css")
 
   body(ng-controller="MainCtrl as vm")
+    md-toolbar.md-warn
+      .md-toolbar-tools
+        h2
+          span Tagged
+        span(flex)
+        md-input-container(md-no-float)
+          md-icon(md-svg-src="img/icons/ic_place_24px.svg")
+          input(ng-model="vm.search" type="text" placeholder="Search")
+          //- md-icon(md-svg-src="ic_clear_white_24px.svg" style="display:inline-block;")
+             
     md-content(layout-padding layout-align="cente" layout="row")
-      div#tags(flex="20")
-        h2 Tags
-        ul
-          li(ng-repeat="tag in vm.tags") {{ tag }}
-      div#favs(flex="80")
 
+      div#tags(flex="20")
+        md-list
+          md-subheader.md-no-sticky Tags
+          md-list-item(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)")
+            .md-list-item-text
+              h3 {{ tag }}
+            md-divider(ng-if="!$last")
+
+      div#favs(flex="80")
+        md-list
+          md-list-item.md-2-line.secondary-button-padding(ng-repeat="fav in vm.favs" ng-click="vm.open(fav.url)")
+            img.md-avatar(ng-src="{{ fav.icon }}")
+            .md-list-item-text(layout="column")
+              h3 {{ fav.title }}
+              p {{ fav.url }}
+            md-menu.md-secondary
+              md-button.md-icon-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
+                md-icon(md-menu-origin md-svg-src="ic_more_vert_black_24px.svg")
+              md-menu-content(width="3")
+                md-menu-item
+                  md-button(ng-click="ctrl.redial($event)")
+                    md-icon(md-menu-align-target md-svg-src="ic_mode_edit_black_24px.svg") 
+                    | Edit
+                md-menu-item
+                  md-button(ng-click="ctrl.redial($event)")
+                    md-icon(md-menu-align-target md-svg-src="ic_delete_black_24px.svg") 
+                    | Remove
+            md-divider(ng-if="!$last")
     script(src="lib/angular.min.js")
     script(src="lib/angular-aria.min.js")
     script(src="lib/angular-animate.min.js")

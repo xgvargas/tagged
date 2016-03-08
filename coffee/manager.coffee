@@ -6,3 +6,25 @@ manager.controller 'MainCtrl',
         constructor: (@tagsService) ->
             @tags = @tagsService.all()
             @tags.push('teste')
+            @tags.push('meleca')
+            @favs = [
+                title:'oi mano'
+                url: 'http://www.github.com'
+                tags: ['python']
+            ,
+                title: 'beleza!? sou outro fav'
+                url: 'http://google.com'
+                tags: ['angular']
+                icon: 'https://material.angularjs.org/latest/favicon.ico'
+            ]
+
+        filterBy: (tag) ->
+            alert 'oi'
+
+        open: (url) ->
+            chrome.tabs.create
+                url: url
+
+        openMenu: ($mdOpenMenu, ev) ->
+            @sender = ev
+            $mdOpenMenu ev

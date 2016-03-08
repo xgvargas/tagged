@@ -16,3 +16,11 @@ chrome.omnibox.onInputEntered.addListener (string, disposition) ->
 chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
 
 chrome.tabs.onUpdated.addListener (activeInfo) ->
+
+chrome.contextMenus.create
+    id: "openManager"
+    title: "Manager"
+    context: ["browser_action"]
+
+chrome.contextMenus.onClicked.addListener (info, tab) ->
+    alert 'clicado!'

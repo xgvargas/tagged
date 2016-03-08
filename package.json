@@ -9,15 +9,11 @@
   "author": "Gustavo Vargas",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.5.0",
-    "angular-animate": "^1.5.0",
-    "angular-aria": "^1.5.0",
-    "angular-material": "^1.0.6",
-    "angular-messages": "^1.5.0",
     "gulp": "^3.9.1",
     "gulp-coffee": "^2.3.1",
     "gulp-jade": "^1.1.0",
     "gulp-sass": "^2.2.0",
-    "marked": "^0.3.5"
+    "marked": "^0.3.5",
+    "shelljs": "^0.6.0"
   }
 }

@@ -18,7 +18,8 @@
     "permissions": [
         "tabs",
         "bookmarks",
-        "storage"
+        "storage",
+        "contextMenus"
     ],
 
     "browser_action": {
@@ -34,9 +35,9 @@
         "persistent": false,
         "scripts": ["background.js"]
     },
-    "chrome_url_overrides": {
+    /*"chrome_url_overrides": {
         "bookmarks": "manager.html"
-    },
+    },*/
     "omnibox": {
         "keyword": "tag"
     },

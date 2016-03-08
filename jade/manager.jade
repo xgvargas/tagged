@@ -1,23 +1,18 @@
 doctype html
-html(ng-app="tagged")
+html(ng-app="manager")
   head
     title Tagged
     meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
-    link(type="text/css", rel="stylesheet", href="lib/angular-material.min.css")
-    link(type="text/css", rel="stylesheet", href="manager.css")
+    link(type="text/css" rel="stylesheet" href="lib/angular-material.min.css")
+    link(type="text/css" rel="stylesheet" href="manager.css")
 
   body(ng-controller="MainCtrl as vm")
-    md-content(layout-padding layout-align="start stretch" layout="column")
-      md-input-container.md-block
-        label {{ vm.txt.title }}
-        input(ng-model="vm.title")
-      md-input-container.md-block
-        label {{ vm.txt.description }}
-        textarea(ng-model="vm.description" md-maxlength="150" rows="5" md-select-on-focus)
-      md-chips(ng-model="vm.tags", placeholder="Enter a tag", secondary-placeholder="+Tag")
-      md-button.md-raised.md-warn(ng-click="vm.add()")
-        md-icon(md-svg-src="ic_add_white_24px.svg")
-        | {{ vm.txt.add }}
+    md-content(layout-padding layout-align="cente" layout="row")
+      div#tags(flex="20")
+        h2 Tags
+        ul
+          li(ng-repeat="tag in vm.tags") {{ tag }}
+      div#favs(flex="80")
 
     script(src="lib/angular.min.js")
     script(src="lib/angular-aria.min.js")

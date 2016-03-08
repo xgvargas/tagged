@@ -1,13 +1,14 @@
 {
     "manifest_version": 2,
     "name": "Tagged",
-    "description": "A Chrome tagged bookmarking system. ",
+    "description": "__MSG_description__",
     "version": "1.0.0",
     "author": "Gustavo Vargas <xgvargas@gmail.com",
 
-    /*"default_locale": "en",*/
+    "default_locale": "en",
 
-    "homepage_url": "http://path/to/homepage",
+    /*"homepage_url": "http://path/to/homepage",
+    "update_url": "http://path/to/updateInfo.xml",*/
 
     "icons": {
         "16": "icon16.png",
@@ -17,7 +18,6 @@
 
     "permissions": [
         "tabs",
-        "bookmarks",
         "storage",
         "contextMenus"
     ],
@@ -35,16 +35,13 @@
         "persistent": false,
         "scripts": ["background.js"]
     },
-    /*"chrome_url_overrides": {
-        "bookmarks": "manager.html"
-    },*/
+
     "omnibox": {
         "keyword": "tag"
     },
+
     "options_ui": {
         "page": "options.html",
         "chrome_style": true
-    },
-
-    "update_url": "http://path/to/updateInfo.xml"
+    }
 }

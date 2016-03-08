@@ -20,7 +20,7 @@ chrome.tabs.onUpdated.addListener (activeInfo) ->
 chrome.contextMenus.create
     id: "openManager"
     title: "Manager"
-    context: ["browser_action"]
+    contexts: ["browser_action"]
 
 chrome.contextMenus.onClicked.addListener (info, tab) ->
-    alert 'clicado!'
+    chrome.tabs.create url: chrome.extension.getURL 'manager.html'

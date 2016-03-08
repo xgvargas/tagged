@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var coffee = require('gulp-coffee');
 var sass = require('gulp-sass');
 var jade = require('gulp-jade');
-// var marked = require('marked'),    # caso use markdown no jade
 var sh = require('shelljs');
 
 

@@ -1,20 +1,20 @@
-app = angular.module 'tagged', ['ngMaterial']
+popup = angular.module 'popup', ['ngMaterial', 'shared']
 
-# app.service 'tabsService',
-#     class
-#         getCurrent: ->
-#             chrome.tabs.getCurrent (tab) ->
-#                 return tab.title
-
-app.controller 'MainCtrl',
+popup.controller 'MainCtrl',
     class
+        txt:
+            title: chrome.i18n.getMessage 'popup_title'
+            description: chrome.i18n.getMessage 'popup_description'
+            add: chrome.i18n.getMessage 'popup_add'
+        fav:
+            description: ""
         tags: []
-        description: ""
-        constructor: ->
+        constructor: (@tagsService) ->
+            @tags = @tagsService.all()
             chrome.tabs.query {active: true, currentWindow: true}, (tabs) =>
-                @title = tabs[0].title
-                @url = tabs[0].url
-                @icon = tabs[0].favIconUrl
+                @fav.title = tabs[0].title
+                @fav.url = tabs[0].url
+                @fav.icon = tabs[0].favIconUrl
 
         add: ->
             alert 'adicionando...'

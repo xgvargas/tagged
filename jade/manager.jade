@@ -1,9 +1,27 @@
 doctype html
-html
+html(ng-app="tagged")
   head
-    title Tagged manager
+    title Tagged
+    meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
+    link(type="text/css", rel="stylesheet", href="lib/angular-material.min.css")
     link(type="text/css", rel="stylesheet", href="manager.css")
-  body
-    | sou o novo gerenciador
 
-  script(src="manager.js")
+  body(ng-controller="MainCtrl as vm")
+    md-content(layout-padding layout-align="start stretch" layout="column")
+      md-input-container.md-block
+        label {{ vm.txt.title }}
+        input(ng-model="vm.title")
+      md-input-container.md-block
+        label {{ vm.txt.description }}
+        textarea(ng-model="vm.description" md-maxlength="150" rows="5" md-select-on-focus)
+      md-chips(ng-model="vm.tags", placeholder="Enter a tag", secondary-placeholder="+Tag")
+      md-button.md-raised.md-warn(ng-click="vm.add()")
+        md-icon(md-svg-src="ic_add_white_24px.svg")
+        | {{ vm.txt.add }}
+
+    script(src="lib/angular.min.js")
+    script(src="lib/angular-aria.min.js")
+    script(src="lib/angular-animate.min.js")
+    script(src="lib/angular-material.min.js")
+    script(src="manager.js")
+    script(src="shared.js")

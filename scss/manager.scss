@@ -1,3 +1,10 @@
+#search{
+    border-width: 0;
+    &:focus {
+        outline: none;
+    }
+}
+
 #tags{
     background-color: #eee;
 }

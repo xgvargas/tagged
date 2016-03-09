@@ -2,6 +2,6 @@
 /tagged/*.css
 /tagged/*.html
 /node_modules
-tagged/icon*.png
+tagged/*.png
 /bower_components
 /tagged/*.svg

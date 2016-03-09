@@ -17,6 +17,8 @@ html(ng-app="manager")
           md-icon(md-svg-src="img/icons/ic_place_24px.svg")
           input(ng-model="vm.search" type="text" placeholder="Search")
           //- md-icon(md-svg-src="ic_clear_white_24px.svg" style="display:inline-block;")
+        md-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
+          md-icon(md-svg-icon="ic_more_vert_black_24px")
              
     md-content(layout-padding layout-align="cente" layout="row")
 

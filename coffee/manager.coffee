@@ -1,6 +1,9 @@
 
 manager = angular.module 'manager', ['ngMaterial', 'shared']
 
+manager.config ($mdIconProvider) ->
+    $mdIconProvider.defaultIconSet 'icons.svg'
+
 manager.controller 'MainCtrl',
     class
         constructor: (@tagsService) ->

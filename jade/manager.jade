@@ -12,12 +12,11 @@ html(ng-app="manager")
       .md-toolbar-tools
         h2
           span Tagged
-        //- span(flex)
         span(flex style="margin: 0 50px; white-space: nowrap;")
-          ng-md-icon(icon="search" style="fill:white;")
-          input#search(ng-model="vm.search" type="text" style="width:100%;")
-          md-button.md-icon-button(ng-click="vm.search='';" ng-show="vm.search")
-            ng-md-icon(icon="clear" style="fill:white;")
+          md-icon(md-svg-icon="search_white") 
+          input#search(flex ng-model="vm.search" type="text" style="width:100%;")
+          //- md-button.md-icon-button(flex ng-click="vm.search='';" ng-disabled="vm.search")
+          //-   md-icon(md-svg-icon="clear_white") 
            
     md-content(layout-padding layout-align="cente" layout="row")
 
@@ -39,16 +38,15 @@ html(ng-app="manager")
             md-menu.md-secondary
               md-button.md-icon-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
                 //- ng-md-icon(md-menu-origin icon="more_vert" style="fill:black;")
-                md-icon(md-menu-origin md-svg-icon="ic_more_vert_black_24px")
+                md-icon(md-menu-origin md-svg-icon="more_vert_black")
               md-menu-content(width="3")
                 md-menu-item
                   md-button(ng-click="ctrl.redial($event)")
-                    md-icon(md-menu-align-target md-svg-icon="ic_mode_edit_black_24px") 
+                    md-icon(md-menu-align-target md-svg-icon="mode_edit_black") 
                     | Edit
                 md-menu-item
                   md-button(ng-click="ctrl.redial($event)")
-                    //- ng-md-icon(md-menu-align-target icon="delete" style="fill:black;")
-                    md-icon(md-menu-align-target md-svg-icon="ic_delete_black_24px") 
+                    md-icon(md-menu-align-target md-svg-icon="delete_black") 
                     | Remove
             md-divider(ng-if="!$last")
     script(src="lib/angular.min.js")

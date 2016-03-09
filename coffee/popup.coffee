@@ -18,8 +18,8 @@ popup.controller 'MainCtrl',
         working: no
         done: no
 
-        constructor: (@$timeout, @tagsService, @favService) ->
-            @tags = @tagsService.all()
+        constructor: (@$timeout, @favsService) ->
+            @tags = @favsService.getTags()
             chrome.tabs.query {active: true, currentWindow: true}, (tabs) =>
                 @fav.title = tabs[0].title
                 @fav.url = tabs[0].url
@@ -29,8 +29,8 @@ popup.controller 'MainCtrl',
         add: ->
             @working = yes
             @done = yes
-            @tagsService.add @fav.tags
-            @favService.add @fav, =>
+            # @tagsService.add @fav.tags
+            @favsService.add @fav, =>
                 @working = no
                 chrome.browserAction.setIcon
                     tabId:  @tabId

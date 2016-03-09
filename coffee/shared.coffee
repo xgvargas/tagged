@@ -1,36 +1,38 @@
 
 shared = angular.module 'shared', []
 
-shared.service 'tagsService',
+shared.service 'favsService',
     class
-        all_tags: []
+        favs: []
+        tags: []
 
-        constructor: ->
-            chrome.storage.local.get
-                tags: []
-            ,
-                (items) =>
-                    @all_tags = items.tags
+        constructor: (@$q)-> @all()
 
         all: ->
-            @all_tags
-
-        add: (tags) ->
-            for tag in tags
-                @all_tags.push tag if tag not in @all_tags
-            @save()
-
-        save: ->
-            chrome.storage.local.set
-                tags: @all_tags
-
-
-shared.service 'favService',
-    class
-        constructor: ->
-
-        add: (fav, cb) ->
-            chrome.storage.local.set
-                favs: fav
+            d = @$q.defer()
+            chrome.storage.local.get
+                favs: []
             ,
-                cb()
+                (items) =>
+                    console.log items
+                    @favs = items.favs
+                    d.resolve @favs
+            d.promise
+
+        getTags: ->
+            if @tags == []
+                for fav in @favs
+                    for tag in fav.tags
+                        @tags.push tag if tag not in @tags
+            @tags
+
+        add: (fav) ->
+            d = @$q.defer()
+            @favs.push fav
+            for tag in fav.tags
+                @tags.push tag if tag not in @tags
+            chrome.storage.local.set
+                favs: @favs
+            ,
+                -> d.resolve()
+            d.promise

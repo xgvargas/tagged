@@ -56,6 +56,8 @@ gulp.task('jade', function() {
 });
 
 gulp.task('icon', function(done){
+    var files = sh.ls('svg/*.svg');
+    console.log(files)
     svgAux({
         done: done,
         input: 'icons.svg',
@@ -68,31 +70,31 @@ gulp.task('icon', function(done){
     });
 });
 
-gulp.task('svg', ['break'], function(){
+gulp.task('svg', function(){
     return gulp.src('svg/single/**/*.svg')
         .pipe(svgmin({
             js2svg: {
-                pretty: true
+                pretty: DEVMODE
             }
         }))
         .pipe(svgng({ filename: 'icons.svg' }))
         .pipe(gulp.dest(DST));
 });
 
-gulp.task('break', function(done){
-    sh.mkdir('-p', 'svg/single/_tmp/');
-    sh.rm('svg/single/_tmp/*.svg');
-    svgAux({
-        done: done,
-        input: 'svg/mixed/beleuza.svg',
-        output: 'svg/single/_tmp/',
-        valid: /xx\w+/,
-        cut: 2,
-        cmd: '-l ',
-        extension: '.svg',
-        color: ['#f2f2f2', 'none'],
-    });
-});
+// gulp.task('break', function(done){
+//     sh.mkdir('-p', 'svg/single/_tmp/');
+//     sh.rm('svg/single/_tmp/*.svg');
+//     svgAux({
+//         done: done,
+//         input: 'svg/mixed/beleuza.svg',
+//         output: 'svg/single/_tmp/',
+//         valid: /xx\w+/,
+//         cut: 2,
+//         cmd: '-l ',
+//         extension: '.svg',
+//         color: ['#f2f2f2', 'none'],
+//     });
+// });
 
 function svgAux(ops){
     if(!sh.which('inkscape')){

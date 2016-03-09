@@ -1,5 +1,7 @@
 popup = angular.module 'popup', ['ngMaterial', 'shared']
 
+popup.config ($mdIconProvider) -> $mdIconProvider.defaultIconSet 'icons.svg'
+
 popup.controller 'MainCtrl',
     class
         txt:

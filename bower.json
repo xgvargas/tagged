@@ -19,6 +19,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular-material": "^1.0.6"
+    "angular-material": "^1.0.6",
+    "angular-material-icons": "^0.6.0",
+    "svg-morpheus": "^0.1.8"
   }
 }

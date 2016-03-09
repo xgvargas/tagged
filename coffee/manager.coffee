@@ -1,5 +1,5 @@
 
-manager = angular.module 'manager', ['ngMaterial', 'shared']
+manager = angular.module 'manager', ['ngMaterial', 'ngMdIcons', 'shared']
 
 manager.config ($mdIconProvider) ->
     $mdIconProvider.defaultIconSet 'icons.svg'

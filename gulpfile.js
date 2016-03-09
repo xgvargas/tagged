@@ -5,19 +5,21 @@ var jade = require('gulp-jade');
 var sh = require('shelljs');
 var sourcemaps = require('gulp-sourcemaps');
 var svgng = require('gulp-svg-ngmaterial');
+var gutil = require('gulp-util');
+var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate');
+var svgmin = require('gulp-svgmin');
 
 
 var DEVMODE = true;
 var DST = 'tagged/';
-var SVGFILE = 'icons.svg';
-var SVGVALID = /icon[0-9]/;
 
 
 gulp.task('default', ['sass', 'coffee', 'jade', 'svg'], function(){
     gulp.watch('scss/**/*.scss', ['sass']);
     gulp.watch('coffee/**/*.coffee', ['coffee']);
     gulp.watch('jade/**/*.jade', ['jade']);
-    gulp.watch('svg/**/*.svg', ['svg']);
+    gulp.watch('svg/single/**/*.svg', ['svg']);
 });
 
 gulp.task('dist', function(){
@@ -29,19 +31,18 @@ gulp.task('build', ['sass', 'coffee', 'jade', 'svg', 'icon']);
 
 gulp.task('sass', function() {
     return gulp.src('scss/*.scss')
-        .pipe(sass({ errLogToConsole: true })) .on('error', console.log)
+        .pipe(sass({ errLogToConsole: true })) .on('error', gutil.log)
         .pipe(gulp.dest(DST));
 });
 
 gulp.task('coffee', function() {
-    var stream = gulp.src('coffee/*.coffee');
-
-    if(DEVMODE) stream.pipe(sourcemaps.init());
-    stream.pipe(coffee({ bare: false }))
-        .on('error', console.log);
-    if(DEVMODE) stream.pipe(sourcemaps.write());
-
-    return stream.pipe(gulp.dest(DST));
+    return gulp.src('coffee/*.coffee')
+        .pipe(DEVMODE ? sourcemaps.init() : gutil.noop())
+        .pipe(coffee({ bare: false })) .on('error', gutil.log)
+        .pipe(DEVMODE ? sourcemaps.write() : gutil.noop())
+        .pipe(ngAnnotate())
+        .pipe(DEVMODE ? gutil.noop() : uglify()) .on('error', gutil.log)
+        .pipe(gulp.dest(DST));
 });
 
 gulp.task('jade', function() {
@@ -50,30 +51,87 @@ gulp.task('jade', function() {
             locals: {},
             client: false,
             pretty: DEVMODE,
-        })) .on('error', console.log)
+        })) .on('error', gutil.log)
         .pipe(gulp.dest(DST));
 });
 
 gulp.task('icon', function(done){
-    var all = sh.exec('inkscape -z -S ' + SVGFILE, {silent: true}).output.trim();
-    var name = /^([^\n,]+)/gm;
-    var m;
-
-    do{
-        m = name.exec(all);
-        if(m){
-            if(SVGVALID.test(m[1])){
-                console.log('Extracting: ' + DST + m[1] + '.png');
-                sh.exec('inkscape -z -d 90 -e ' + DST + m[1] + '.png -j -i ' + m[1] + ' ' + SVGFILE, {async: true, silent: true});
-            }
-        }
-    } while(m);
-
-    done();
+    svgAux({
+        done: done,
+        input: 'icons.svg',
+        output: DST,
+        valid: /icon[0-9]|teste/,
+        cur: 0,
+        cmd: '-e ',
+        extension: '.png',
+        color: ['#f2f2f2', 'none'],
+    });
 });
 
-gulp.task('svg', function(){
-    return gulp.src('svg/*.svg')
+gulp.task('svg', ['break'], function(){
+    return gulp.src('svg/single/**/*.svg')
+        .pipe(svgmin({
+            js2svg: {
+                pretty: true
+            }
+        }))
         .pipe(svgng({ filename: 'icons.svg' }))
         .pipe(gulp.dest(DST));
 });
+
+gulp.task('break', function(done){
+    sh.mkdir('-p', 'svg/single/_tmp/');
+    sh.rm('svg/single/_tmp/*.svg');
+    svgAux({
+        done: done,
+        input: 'svg/mixed/beleuza.svg',
+        output: 'svg/single/_tmp/',
+        valid: /xx\w+/,
+        cut: 2,
+        cmd: '-l ',
+        extension: '.svg',
+        color: ['#f2f2f2', 'none'],
+    });
+});
+
+function svgAux(ops){
+    if(!sh.which('inkscape')){
+        gutil.log('OOps! Inkscape must be in your path');
+    }
+    else{
+        var tmp = Math.random().toString(36).substr(7) + '.svg'
+        sh.cp(ops.input, tmp);
+        if(ops.color){
+            sh.sed('-i', ops.color[0], ops.color[1], tmp);
+        }
+        sh.exec('inkscape -z -S ' + tmp, {silent: true}, function(code, data){
+            var name = /^([^\n,]+)/gm;
+            var m;
+            var count = 0;
+
+            do{
+                m = name.exec(data);
+                if(m){
+                    if(ops.valid.test(m[1])){
+                        (function(name){
+                            count++;
+                            sh.exec('inkscape -z -d 90 ' + ops.cmd + ops.output + name + ops.extension + ' -j -i ' +
+                                                                    m[1] + ' ' + tmp, {silent: true}, function(){
+                                gutil.log('Extracted: ' + ops.output + name + ops.extension);
+                                if(!--count){
+                                    sh.rm(tmp);
+                                    ops.done();
+                                }
+                            });
+                        })(m[1].substring(ops.cut));
+                    }
+                }
+            } while(m);
+
+            if(!count){
+                sh.rm(tmp);
+                ops.done();
+            }
+        });
+    }
+}

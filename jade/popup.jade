@@ -24,7 +24,7 @@ html(ng-app="popup")
       //-    <span md-highlight-text="ctrl.searchText">{{item.name}} :: {{item.type}}</span>
       md-progress-linear(md-mode="indeterminate" ng-if="vm.working")
       md-button.md-raised.md-warn(ng-click="vm.add()" ng-hide="vm.done")
-        md-icon(md-svg-src="ic_add_white_24px.svg")
+        md-icon(md-svg-icon="ic_add_white_24px")
         | {{ vm.txt.add }}
       p {{vm.fav}}
 

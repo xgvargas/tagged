@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="93.2924"
-     inkscape:cy="639.13767"
+     inkscape:zoom="3.959798"
+     inkscape:cx="130.18553"
+     inkscape:cy="639.22294"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -54,50 +54,53 @@
     <g
        id="icon128"
        inkscape:label="#g4293">
-      <rect
-         y="138.46352"
-         x="57.578697"
-         height="128"
-         width="128"
-         id="rect4136"
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
-         transform="matrix(1.2498783,0,0,1.2498783,192.10754,-28.591734)"
-         id="g4231">
+         id="g4219">
         <rect
-           style="opacity:0.95999995;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect4215"
-           width="90"
-           height="65"
-           x="-164.48157"
-           y="119.42883"
-           ry="12.001168"
-           rx="12.001168"
-           transform="matrix(0.93227343,-0.36175441,0.36175441,0.93227343,0,0)" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:57.40417862px;line-height:125%;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="-95.807816"
-           y="205.04608"
-           id="text4217"
-           sodipodi:linespacing="125%"
-           transform="scale(1.0363285,0.96494499)"><tspan
-             sodipodi:role="line"
-             id="tspan4219"
+           style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect4136"
+           width="128"
+           height="128"
+           x="57.578697"
+           y="138.46352" />
+        <g
+           id="g4231"
+           transform="matrix(1.2498783,0,0,1.2498783,192.10754,-28.591734)">
+          <rect
+             transform="matrix(0.93227343,-0.36175441,0.36175441,0.93227343,0,0)"
+             rx="12.001168"
+             ry="12.001168"
+             y="119.42883"
+             x="-164.48157"
+             height="65"
+             width="90"
+             id="rect4215"
+             style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <text
+             transform="scale(1.0363285,0.96494499)"
+             sodipodi:linespacing="125%"
+             id="text4217"
+             y="205.04608"
              x="-95.807816"
-             y="205.04608">tag</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:57.40417862px;line-height:125%;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               y="205.04608"
+               x="-95.807816"
+               id="tspan4219"
+               sodipodi:role="line">tag</tspan></text>
+        </g>
       </g>
     </g>
     <g
        id="icon48"
-       inkscape:label="#g4307">
+       inkscape:label="#g4291">
       <rect
          y="218.46355"
          x="219.20309"
          height="48"
          width="48"
          id="rect4140"
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          id="g4247"
          transform="matrix(0.44933759,0,0,0.44933759,268.55857,159.39801)">
@@ -110,7 +113,7 @@
            height="65"
            width="90"
            id="rect4249"
-           style="opacity:0.95999995;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         <text
            transform="scale(1.0363285,0.96494499)"
            sodipodi:linespacing="125%"
@@ -127,19 +130,19 @@
     </g>
     <g
        id="icon16"
-       inkscape:label="#g4300">
+       inkscape:label="#g4279">
       <rect
          y="247.43306"
          x="306.0762"
          height="16"
          width="16"
          id="rect4138"
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          transform="matrix(0.15073568,0,0,0.15073568,322.582,227.56773)"
          id="g4255">
         <rect
-           style="opacity:0.95999995;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="rect4257"
            width="90"
            height="65"
@@ -164,19 +167,19 @@
     </g>
     <g
        id="icon19"
-       inkscape:label="#g4279">
+       inkscape:label="#g4267">
       <rect
          y="357.57016"
          x="130.30968"
          height="19"
          width="19"
          id="rect4142"
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          transform="matrix(0.17537477,0,0,0.17537477,149.70582,334.64999)"
          id="g4263">
         <rect
-           style="opacity:0.95999995;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="rect4265"
            width="90"
            height="65"
@@ -201,14 +204,14 @@
     </g>
     <g
        id="icon38"
-       inkscape:label="#g4286">
+       inkscape:label="#g4260">
       <rect
          y="336.5498"
          x="62.629459"
          height="38"
          width="38"
          id="rect4144"
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          id="g4271"
          transform="matrix(0.36639261,0,0,0.36639261,102.30447,287.81766)">
@@ -221,7 +224,7 @@
            height="65"
            width="90"
            id="rect4273"
-           style="opacity:0.95999995;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="opacity:1;fill:#c83737;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         <text
            transform="scale(1.0363285,0.96494499)"
            sodipodi:linespacing="125%"
@@ -237,19 +240,18 @@
       </g>
     </g>
     <g
-       inkscape:label="#g4279"
        id="icon19h"
-       transform="translate(-1.0101558,69.700526)">
+       inkscape:label="#g4246">
       <rect
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect4316"
          width="19"
          height="19"
-         x="130.30968"
-         y="357.57016" />
+         x="129.29951"
+         y="427.27069" />
       <g
          id="g4318"
-         transform="matrix(0.17537477,0,0,0.17537477,149.70582,334.64999)">
+         transform="matrix(0.17537477,0,0,0.17537477,148.69566,404.35052)">
         <rect
            transform="matrix(0.93227343,-0.36175441,0.36175441,0.93227343,0,0)"
            rx="12.001168"
@@ -259,14 +261,14 @@
            height="65"
            width="90"
            id="rect4320"
-           style="opacity:0.95999995;fill:#ffcc00;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           style="opacity:1;fill:#ffcc00;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         <text
            transform="scale(1.0363285,0.96494499)"
            sodipodi:linespacing="125%"
            id="text4322"
            y="205.04608"
            x="-95.807816"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:57.40417862px;line-height:125%;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:57.40417862px;line-height:125%;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';letter-spacing:0px;word-spacing:0px;fill:#554400;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
            xml:space="preserve"><tspan
              y="205.04608"
              x="-95.807816"
@@ -275,21 +277,20 @@
       </g>
     </g>
     <g
-       inkscape:label="#g4286"
        id="icon38h"
-       transform="translate(-1.0101558,69.700526)">
+       inkscape:label="#g4253">
       <rect
-         style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="opacity:1;fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect4328"
          width="38"
          height="38"
-         x="62.629459"
-         y="336.5498" />
+         x="61.619305"
+         y="406.25034" />
       <g
-         transform="matrix(0.36639261,0,0,0.36639261,102.30447,287.81766)"
+         transform="matrix(0.36639261,0,0,0.36639261,101.29431,357.51819)"
          id="g4330">
         <rect
-           style="opacity:0.95999995;fill:#ffcc00;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="opacity:1;fill:#ffcc00;fill-opacity:1;stroke:none;stroke-width:2.79999995;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="rect4332"
            width="90"
            height="65"
@@ -300,7 +301,7 @@
            transform="matrix(0.93227343,-0.36175441,0.36175441,0.93227343,0,0)" />
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:57.40417862px;line-height:125%;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:57.40417862px;line-height:125%;font-family:'Trebuchet MS';-inkscape-font-specification:'Trebuchet MS Bold';letter-spacing:0px;word-spacing:0px;fill:#554400;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
            x="-95.807816"
            y="205.04608"
            id="text4334"

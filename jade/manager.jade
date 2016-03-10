@@ -37,8 +37,10 @@ html(ng-app="manager")
                 img.md-avatar(ng-src="{{ fav.icon }}")
                 .md-list-item-text(layout="column")
                   h3 {{ fav.title }}
-                  h4 {{ fav.url }}
-                  p {{ fav.description }}
+                  h4 {{ fav.description }}
+                  p
+                     span.tag-list(ng-repeat="tag in fav.tags") {{ tag }}
+                     | {{ fav.url }}
                 md-menu.md-secondary
                   md-button.md-icon-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
                     md-icon(md-menu-origin md-svg-icon="more_vert_black")

@@ -4,3 +4,14 @@
         outline: none;
     }
 }
+
+.tag-list{
+    background-color: #9AD8BE;
+    margin: 0 4px;
+    padding: 0 5px;
+    border-radius: 5px;
+
+    &:last-of-type{
+        margin-right: 15px;
+    }
+}

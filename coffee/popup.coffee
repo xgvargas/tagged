@@ -19,7 +19,7 @@ popup.controller 'MainCtrl',
         done: no
 
         constructor: (@$timeout, @favsService) ->
-            @tags = @favsService.getTags()
+            @tags = @favsService.tags
             chrome.tabs.query {active: true, currentWindow: true}, (tabs) =>
                 @fav.title = tabs[0].title
                 @fav.url = tabs[0].url

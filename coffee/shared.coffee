@@ -16,6 +16,7 @@ shared.service 'favsService',
                     for fav in @favs
                         for tag in fav.tags
                             @tags.push tag if tag not in @tags
+                    @tags.sort()
                     @valid.resolve()
 
         query: (q, len = 15) ->
@@ -29,6 +30,7 @@ shared.service 'favsService',
             @favs.push fav
             for tag in fav.tags
                 @tags.push tag if tag not in @tags
+            @tags.sort()
             chrome.storage.local.set
                 favs: @favs
             ,

@@ -6,25 +6,23 @@ shared.service 'favsService',
         favs: []
         tags: []
 
-        constructor: (@$q)-> @all()
-
-        all: ->
-            d = @$q.defer()
+        constructor: (@$q) ->
+            @valid = @$q.defer()
             chrome.storage.local.get
                 favs: []
             ,
                 (items) =>
-                    console.log items
                     @favs = items.favs
-                    d.resolve @favs
-            d.promise
+                    for fav in @favs
+                        for tag in fav.tags
+                            @tags.push tag if tag not in @tags
+                    @valid.resolve()
 
-        getTags: ->
-            if @tags == []
-                for fav in @favs
-                    for tag in fav.tags
-                        @tags.push tag if tag not in @tags
-            @tags
+        query: (q, len = 15) ->
+            d = @$q.defer()
+            @valid.promise.then =>
+                d.resolve @favs
+            d.promise
 
         add: (fav) ->
             d = @$q.defer()

@@ -1,29 +1,17 @@
 
-manager = angular.module 'manager', ['ngMaterial', 'ngMdIcons', 'shared']
+manager = angular.module 'manager', ['ngMaterial', 'shared']
 
 manager.config ($mdIconProvider) ->
-    $mdIconProvider.defaultIconSet 'icons.svg'
+    $mdIconProvider.defaultIconSet 'mdicons.svg'
 
 manager.controller 'MainCtrl',
     class
         constructor: (@favsService) ->
-            @tags = @favsService.getTags()
-            @tags.push('teste')
-            @tags.push('meleca')
-            @favsService.all().then (favs) -> @favs = favs
-            # @favs = [
-            #     title:'oi mano'
-            #     url: 'http://www.github.com'
-            #     tags: ['python']
-            # ,
-            #     title: 'beleza!? sou outro fav'
-            #     url: 'http://google.com'
-            #     tags: ['angular']
-            #     icon: 'https://material.angularjs.org/latest/favicon.ico'
-            # ]
+            @tags = @favsService.tags
+            @favsService.query().then (favs) =>
+                @favs = favs
 
-        filterBy: (tag) ->
-            alert 'oi'
+        filterBy: (tag) -> @search = '/' + tag
 
         open: (url) ->
             chrome.tabs.create

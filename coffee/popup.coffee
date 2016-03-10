@@ -1,6 +1,6 @@
 popup = angular.module 'popup', ['ngMaterial', 'shared']
 
-popup.config ($mdIconProvider) -> $mdIconProvider.defaultIconSet 'icons.svg'
+popup.config ($mdIconProvider) -> $mdIconProvider.defaultIconSet 'mdicons.svg'
 
 popup.controller 'MainCtrl',
     class
@@ -29,8 +29,7 @@ popup.controller 'MainCtrl',
         add: ->
             @working = yes
             @done = yes
-            # @tagsService.add @fav.tags
-            @favsService.add @fav, =>
+            @favsService.add(@fav).then =>
                 @working = no
                 chrome.browserAction.setIcon
                     tabId:  @tabId

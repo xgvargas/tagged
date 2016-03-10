@@ -15,45 +15,47 @@ html(ng-app="manager")
         span(flex style="margin: 0 50px; white-space: nowrap;")
           md-icon(md-svg-icon="search_white") 
           input#search(flex ng-model="vm.search" type="text" style="width:100%;")
-          //- md-button.md-icon-button(flex ng-click="vm.search='';" ng-disabled="vm.search")
-          //-   md-icon(md-svg-icon="clear_white") 
-           
-    md-content(layout-padding layout-align="cente" layout="row")
-
-      div#tags(flex="20")
-        md-list
-          md-subheader.md-no-sticky Tags
-          md-list-item(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)")
-            .md-list-item-text
-              h3 {{ tag }}
-            md-divider(ng-if="!$last")
-
-      div#favs(flex="80")
-        md-list
-          md-list-item.md-2-line.secondary-button-padding(ng-repeat="fav in vm.favs" ng-click="vm.open(fav.url)")
-            img.md-avatar(ng-src="{{ fav.icon }}")
-            .md-list-item-text(layout="column")
-              h3 {{ fav.title }}
-              p {{ fav.url }}
-            md-menu.md-secondary
-              md-button.md-icon-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
-                //- ng-md-icon(md-menu-origin icon="more_vert" style="fill:black;")
-                md-icon(md-menu-origin md-svg-icon="more_vert_black")
-              md-menu-content(width="3")
-                md-menu-item
-                  md-button(ng-click="ctrl.redial($event)")
-                    md-icon(md-menu-align-target md-svg-icon="mode_edit_black") 
-                    | Edit
-                md-menu-item
-                  md-button(ng-click="ctrl.redial($event)")
-                    md-icon(md-menu-align-target md-svg-icon="delete_black") 
-                    | Remove
-            md-divider(ng-if="!$last")
+    div
+      md-content.md-padding(layout="row")
+        div#tags(flex="20" layout="column")
+          md-card
+            md-card-title
+              md-card-title-text
+                span.md-headline Tags
+            md-list
+              md-list-item(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)")
+                .md-list-item-text
+                  h3 {{ tag }}
+                md-divider(ng-if="!$last")
+        div#favs(flex="80" layout="column")
+          md-card
+            md-card-title
+              md-card-title-text
+                span.md-headline Bookmarks
+            md-list
+              md-list-item.md-3-line.secondary-button-padding(ng-repeat="fav in vm.favs" ng-click="vm.open(fav.url)")
+                img.md-avatar(ng-src="{{ fav.icon }}")
+                .md-list-item-text(layout="column")
+                  h3 {{ fav.title }}
+                  h4 {{ fav.url }}
+                  p {{ fav.description }}
+                md-menu.md-secondary
+                  md-button.md-icon-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
+                    md-icon(md-menu-origin md-svg-icon="more_vert_black")
+                  md-menu-content(width="3")
+                    md-menu-item
+                      md-button(ng-click="ctrl.redial($event)")
+                        md-icon(md-menu-align-target md-svg-icon="mode_edit_black") 
+                        | Edit
+                    md-menu-item
+                      md-button(ng-click="ctrl.redial($event)")
+                        md-icon(md-menu-align-target md-svg-icon="delete_black") 
+                        | Remove
+                md-divider(ng-if="!$last")
+              
     script(src="lib/angular.min.js")
     script(src="lib/angular-aria.min.js")
     script(src="lib/angular-animate.min.js")
     script(src="lib/angular-material.min.js")
-    script(src="lib/svg-morpheus.js")
-    script(src="lib/angular-material-icons.min.js")
     script(src="manager.js")
     script(src="shared.js")

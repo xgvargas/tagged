@@ -8,6 +8,7 @@ popup.controller 'MainCtrl',
             title: chrome.i18n.getMessage 'popup_title'
             description: chrome.i18n.getMessage 'popup_description'
             add: chrome.i18n.getMessage 'popup_add'
+
         fav:
             title: ""
             description: ""
@@ -15,7 +16,6 @@ popup.controller 'MainCtrl',
             tags: []
 
         tags: []
-        working: no
         done: no
 
         constructor: (@$timeout, @favsService) ->
@@ -27,13 +27,15 @@ popup.controller 'MainCtrl',
                 @tabId = tabs[0].id
 
         add: ->
-            @working = yes
             @done = yes
             @favsService.add(@fav).then =>
-                @working = no
                 chrome.browserAction.setIcon
                     tabId:  @tabId
                     path:
                         19: 'icon19h.png'
                         38: 'icon38h.png'
                 @$timeout(750) .then -> window.close()
+
+        addLater: ->
+            @fav.tags = ['depois']
+            @add()

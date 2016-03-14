@@ -1,18 +1,18 @@
-var gulp = require('gulp');
-var coffee = require('gulp-coffee');
-var sass = require('gulp-sass');
-var jade = require('gulp-jade');
-var sh = require('shelljs');
+var gulp       = require('gulp');
+var coffee     = require('gulp-coffee');
+var sass       = require('gulp-sass');
+var jade       = require('gulp-jade');
+var sh         = require('shelljs');
 var sourcemaps = require('gulp-sourcemaps');
-var svgng = require('gulp-svg-ngmaterial');
-var gutil = require('gulp-util');
-var uglify = require('gulp-uglify');
+var svgng      = require('gulp-svg-ngmaterial');
+var gutil      = require('gulp-util');
+var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
-var svgmin = require('gulp-svgmin');
+var svgmin     = require('gulp-svgmin');
 
 
 var DEVMODE = true;
-var DST = 'tagged/';
+var DST     = 'tagged/';
 
 
 gulp.task('default', ['sass', 'coffee', 'jade', 'icon'], function(){
@@ -61,14 +61,14 @@ gulp.task('png', function(done){
     for(var i = 0; i < files.length; i++){
         count++;
         svgAux({
-            done: function(){ if(!--count) done(); },
-            input: files[i],
-            output: DST,
-            valid: /xx\w+/,
-            cut: 2,
-            cmd: '-e ',
-            extension: '.png',
-            replace: [{from: '#f2f2f2', to: 'none'}],
+            done      : function(){ if(!--count) done(); },
+            input     : files[i],
+            output    : DST,
+            valid     : /xx\w+/,
+            cut       : 2,
+            cmd       : '-e ',
+            extension : '.png',
+            replace   : [{from: '#f2f2f2', to: 'none'}],
         });
     }
 });

@@ -7,7 +7,7 @@ html(ng-app="popup")
     link(type="text/css" rel="stylesheet" href="popup.css")
 
   body(ng-controller="MainCtrl as vm")
-    md-content(layout-padding layout-align="start stretch" layout="column")
+    md-content(layout-align="start stretch" layout="column")
       md-input-container.md-block
         label {{ vm.txt.title }}
         input(ng-model="vm.fav.title")
@@ -15,17 +15,13 @@ html(ng-app="popup")
         label {{ vm.txt.description }}
         textarea(ng-model="vm.fav.description" md-maxlength="150" rows="5" md-select-on-focus)
       md-chips(ng-model="vm.fav.tags" placeholder="Enter a tag" secondary-placeholder="+Tag")
-      //-     md-autocomplete(
-      //-      md-selected-item="ctrl.selectedItem"
-      //-      md-search-text="ctrl.searchText"
-      //-      md-items="item in vm.tags"
-      //-      md-item-text="item.name"
-      //-      placeholder="Search for a vegetable">
-      //-    <span md-highlight-text="ctrl.searchText">{{item.name}} :: {{item.type}}</span>
-      md-progress-linear(md-mode="indeterminate" ng-if="vm.working")
-      md-button.md-raised.md-warn(ng-click="vm.add()" ng-hide="vm.done")
-        md-icon(md-svg-icon="add_white")
-        | {{ vm.txt.add }}
+      div(layout="row")
+        md-button.md-raised.md-warn(ng-click="vm.add()" ng-hide="vm.done" flex="70")
+          md-icon(md-svg-icon="add_white")
+          | {{ vm.txt.add }} 
+        md-button.md-raised.md-primary(ng-click="vm.addLater()" ng-hide="vm.done" flex="30")
+          md-icon(md-svg-icon="watch_later_white")
+          | Depois
       //- p {{vm.fav}}
 
     script(src="lib/angular.min.js")

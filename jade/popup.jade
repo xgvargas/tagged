@@ -16,12 +16,9 @@ html(ng-app="popup")
         textarea(ng-model="vm.fav.description" md-maxlength="150" rows="5" md-select-on-focus)
       md-chips(ng-model="vm.fav.tags" placeholder="Enter a tag" secondary-placeholder="+Tag")
       div(layout="row")
-        md-button.md-raised.md-warn(ng-click="vm.add()" ng-hide="vm.done" flex="70" ng-disabled="vm.fav.tags == []")
+        md-button.md-raised.md-warn(ng-click="vm.add()" ng-hide="vm.done")
           md-icon(md-svg-icon="add_white")
           | {{ vm.txt.add }} 
-        md-button.md-raised.md-primary(ng-click="vm.addLater()" ng-hide="vm.done" flex="30")
-          md-icon(md-svg-icon="watch_later_white")
-          | {{ vm.txt.later }}
 
     script(src="lib/angular.min.js")
     script(src="lib/angular-aria.min.js")

@@ -8,7 +8,6 @@ popup.controller 'MainCtrl',
             title       : chrome.i18n.getMessage 'popup_title'
             description : chrome.i18n.getMessage 'popup_description'
             add         : chrome.i18n.getMessage 'popup_add'
-            later       : chrome.i18n.getMessage 'popup_later'
 
         fav:
             title       : ""
@@ -36,7 +35,3 @@ popup.controller 'MainCtrl',
                         19: 'icon19h.png'
                         38: 'icon38h.png'
                 @$timeout(750) .then -> window.close()
-
-        addLater: ->
-            @fav.tags = ['depois']
-            @add()

@@ -47,10 +47,13 @@ shared.service 'favsService',
                 else
                     f = @favs
 
-                if qtags.length
-                    d.resolve (item for item in f when qtags.every (el) -> el in item.tags)
+                if not search
+                    d.resolve (item for item in f when item.tags.length == 0)
                 else
-                    d.resolve f
+                    if qtags.length
+                        d.resolve (item for item in f when qtags.every (el) -> el in item.tags)
+                    else
+                        d.resolve f
             d.promise
 
         add: (fav) ->

@@ -8,28 +8,24 @@ html(ng-app="manager")
     link(type="text/css" rel="stylesheet" href="manager.css")
 
   body(ng-controller="MainCtrl as vm")
-    md-toolbar.md-warn
+    md-toolbar#my-toobar.md-warn
       .md-toolbar-tools
         h2
           span Tagged
         span(flex style="margin: 0 50px; white-space: nowrap;")
           md-icon(md-svg-icon="search_white") 
           input#search(flex ng-model="vm.search" type="text" style="width:100%;")
-    div
+    div(style="padding-top:60px")
       md-content.md-padding(layout="row")
         div#tags(flex="20" layout="column")
           md-card
             md-card-title
               md-card-title-text
                 span.md-headline Tags
-            md-content
-              span.tag-drawer(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)") {{ tag }}
-            //- md-list
-            //-   md-list-item(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)")
-            //-     .md-list-item-text
-            //-       h3 {{ tag }}
-            //-     md-divider(ng-if="!$last")
-        div#favs(flex="80" layout="column")
+            md-content.tag-drawer
+              span(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)") {{ tag }}
+
+        div#favs(flex="80" layout="column" flex-offset="20")
           md-card
             md-card-title
               md-card-title-text

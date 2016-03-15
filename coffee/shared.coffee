@@ -8,12 +8,15 @@ shared.service 'favsService',
 
         constructor: (@$q) ->
             @valid = @$q.defer()
+            @index = @getIndex()
             chrome.storage.local.get
                 favs: []
             ,
                 (items) =>
                     @favs = items.favs
-                    for fav in @favs
+                    for fav, i in @favs
+                        fav['id'] = i
+                        @index.addDoc fav
                         for tag in fav.tags
                             @tags.push tag if tag not in @tags
                     @tags.sort()
@@ -22,7 +25,12 @@ shared.service 'favsService',
         query: (q, len = 15) ->
             d = @$q.defer()
             @valid.promise.then =>
-                d.resolve @favs
+                if q?
+                    r = @index.search q, expand: true
+                    f = (@favs[p.ref] for p in r)
+                else
+                    f = @favs
+                d.resolve f
             d.promise
 
         add: (fav) ->
@@ -36,3 +44,15 @@ shared.service 'favsService',
             ,
                 -> d.resolve()
             d.promise
+
+        getIndex: ->
+            index = elasticlunr ->
+                @addField 'title'
+                @addField 'description'
+                @addField 'url'
+                @setRef 'id'
+                @saveDocument false
+            elasticlunr.addStopWords [
+                'um', 'uma', 'a', 'as', 'o', 'os',
+                ]
+            index

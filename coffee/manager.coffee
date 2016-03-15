@@ -6,10 +6,16 @@ manager.config ($mdIconProvider) ->
 
 manager.controller 'MainCtrl',
     class
-        constructor: (@favsService) ->
+        constructor: (@$scope, @favsService) ->
             @tags = @favsService.tags
             @favsService.query().then (favs) =>
                 @favs = favs
+
+            @$scope.$watch (=> @search), (val, old) =>
+                @favsService.query val
+                .then (result) =>
+                    console.log result
+                    @favs = result
 
         filterBy: (tag) -> @search = '/' + tag
 

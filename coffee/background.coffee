@@ -2,16 +2,15 @@
 # chrome.omnibox.onInputCancelled.addListener ->
 
 chrome.omnibox.onInputChanged.addListener (text, suggest) ->
-    suggest [
-        content: "primeiro"
-        description: "#{text} segundo"
-    ,
-        content: "terceiro"
-        description: "#{text} quarto"
-    ]
+    angular.injector ['ng', 'shared']
+    .get("favsService").query text
+    .then (result) ->
+        console.log result
+
+        suggest ({content: i.url, description: i.title} for i in result)
 
 chrome.omnibox.onInputEntered.addListener (string, disposition) ->
-    alert "abrindo a pagina #{string}"
+    chrome.tabs.create url: string
 
 chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
 

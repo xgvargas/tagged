@@ -6,18 +6,20 @@ manager.config ($mdIconProvider) ->
 
 manager.controller 'MainCtrl',
     class
+        search: '[depois]'
+
         constructor: (@$scope, @favsService) ->
             @tags = @favsService.tags
-            @favsService.query().then (favs) =>
+            @favsService.query @search
+            .then (favs) =>
                 @favs = favs
 
             @$scope.$watch (=> @search), (val, old) =>
                 @favsService.query val
                 .then (result) =>
-                    console.log result
                     @favs = result
 
-        filterBy: (tag) -> @search = '/' + tag
+        filterBy: (tag) -> @search = '[' + tag  + ']'
 
         open: (url) ->
             chrome.tabs.create

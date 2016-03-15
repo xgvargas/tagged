@@ -22,15 +22,44 @@ shared.service 'favsService',
                     @tags.sort()
                     @valid.resolve()
 
-        query: (q, len = 15) ->
+        splitSearch: (search) ->
+            s1 = ///
+                ^ (
+                    (?: \s* \[ [^\]]+ \])*
+                )
+                \s*
+                (.*)
+                $///
+            s2 = ///
+                \[ \s*
+                (
+                    [\w\s]+?
+                )
+                \s* \]///g
+
+            m = s1.exec search
+
+            t = []
+            while (y = s2.exec m[1])?
+                t.push y[1]
+
+            qtext: m[2], qtags: t
+
+
+        query: (search) ->
             d = @$q.defer()
             @valid.promise.then =>
-                if q?
-                    r = @index.search q, expand: true
+                {qtext, qtags} = @splitSearch search
+                if qtext != '' and qtext?
+                    r = @index.search qtext, expand: true
                     f = (@favs[p.ref] for p in r)
                 else
                     f = @favs
-                d.resolve f
+
+                if qtags.length
+                    d.resolve (item for item in f when qtags.every (el) -> el in item.tags)
+                else
+                    d.resolve f
             d.promise
 
         add: (fav) ->

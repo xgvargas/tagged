@@ -33,7 +33,12 @@
 
     "background": {
         "persistent": false,
-        "scripts": ["background.js"]
+        "scripts": [
+            "lib/angular.min.js",
+            "lib/elasticlunr.min.js",
+            "shared.js",
+            "background.js"
+        ]
     },
 
     "omnibox": {

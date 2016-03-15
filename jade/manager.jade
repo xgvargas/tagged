@@ -22,18 +22,20 @@ html(ng-app="manager")
             md-card-title
               md-card-title-text
                 span.md-headline Tags
-            md-list
-              md-list-item(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)")
-                .md-list-item-text
-                  h3 {{ tag }}
-                md-divider(ng-if="!$last")
+            md-content
+              span.tag-drawer(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)") {{ tag }}
+            //- md-list
+            //-   md-list-item(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)")
+            //-     .md-list-item-text
+            //-       h3 {{ tag }}
+            //-     md-divider(ng-if="!$last")
         div#favs(flex="80" layout="column")
           md-card
             md-card-title
               md-card-title-text
                 span.md-headline Bookmarks
             md-list
-              md-list-item.md-3-line.secondary-button-padding(ng-repeat="fav in vm.favs" ng-click="vm.open(fav.url)")
+              md-list-item.md-3-line.noright(ng-repeat="fav in vm.favs" ng-click="vm.open(fav.url)")
                 img.md-avatar(ng-src="{{ fav.icon }}")
                 .md-list-item-text(layout="column")
                   h3 {{ fav.title }}
@@ -41,18 +43,10 @@ html(ng-app="manager")
                   p
                      span.tag-list(ng-repeat="tag in fav.tags") {{ tag }}
                      | {{ fav.url }}
-                md-menu.md-secondary
-                  md-button.md-icon-button(ng-click="vm.openMenu($mdOpenMenu, $event)")
-                    md-icon(md-menu-origin md-svg-icon="more_vert_black")
-                  md-menu-content(width="3")
-                    md-menu-item
-                      md-button(ng-click="ctrl.redial($event)")
-                        md-icon(md-menu-align-target md-svg-icon="mode_edit_black") 
-                        | Edit
-                    md-menu-item
-                      md-button(ng-click="ctrl.redial($event)")
-                        md-icon(md-menu-align-target md-svg-icon="delete_black") 
-                        | Remove
+                md-button.md-secondary.md-icon-button(aria-label="edit" ng-click="vm.edit()")
+                  md-icon(md-svg-icon="mode_edit_black")
+                md-button.md-secondary.md-icon-button(aria-label="delete" ng-click="vm.remove()")
+                  md-icon(md-svg-icon="delete_black")
                 md-divider(ng-if="!$last")
               
     script(src="lib/angular.min.js")

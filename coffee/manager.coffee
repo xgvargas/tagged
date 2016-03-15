@@ -6,7 +6,7 @@ manager.config ($mdIconProvider) ->
 
 manager.controller 'MainCtrl',
     class
-        search: '[depois]'
+        search: '/depois'
 
         constructor: (@$scope, @favsService) ->
             @tags = @favsService.tags
@@ -19,7 +19,7 @@ manager.controller 'MainCtrl',
                 .then (result) =>
                     @favs = result
 
-        filterBy: (tag) -> @search = '[' + tag  + ']'
+        filterBy: (tag) -> @search = '/' + tag
 
         open: (url) ->
             chrome.tabs.create
@@ -28,3 +28,7 @@ manager.controller 'MainCtrl',
         openMenu: ($mdOpenMenu, ev) ->
             @sender = ev
             $mdOpenMenu ev
+
+        remove: (item) ->
+
+        edit: (item) ->

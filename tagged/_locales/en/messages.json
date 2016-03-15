@@ -1,14 +1,7 @@
 {
-    "description": {
-        "message": "A Chrome tagged bookmarking system."
-    },
-    "popup_title": {
-        "message": "Title"
-    },
-    "popup_description": {
-        "message": "Description"
-    },
-    "popup_add": {
-        "message": "Add"
-    }
+    "description"       : { "message": "A Chrome tagged bookmarking system." },
+    "popup_title"       : { "message": "Title" },
+    "popup_description" : { "message": "Description" },
+    "popup_add"         : { "message": "Add" },
+    "popup_later"       : { "message": "Later"}
 }

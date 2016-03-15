@@ -15,3 +15,17 @@
         margin-right: 15px;
     }
 }
+
+.tag-drawer{
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 170%;
+    padding: 2px;
+    border-radius: 10%;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #ddd
+    }
+}

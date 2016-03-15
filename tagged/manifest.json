@@ -1,19 +1,19 @@
 {
-    "manifest_version": 2,
-    "name": "Tagged",
-    "description": "__MSG_description__",
-    "version": "1.0.0",
-    "author": "Gustavo Vargas <xgvargas@gmail.com",
+    "manifest_version" : 2,
+    "name"             : "Tagged",
+    "description"      : "__MSG_description__",
+    "version"          : "1.0.0",
+    "author"           : "Gustavo Vargas <xgvargas@gmail.com",
 
     "default_locale": "en",
 
-    /*"homepage_url": "http://path/to/homepage",
-    "update_url": "http://path/to/updateInfo.xml",*/
+    /*"homepage_url" : "http://path/to/homepage",
+    "update_url"     : "http://path/to/updateInfo.xml",*/
 
     "icons": {
-        "16": "icon16.png",
-        "48": "icon48.png",
-        "128": "icon128.png"
+        "16"  : "icon16.png",
+        "48"  : "icon48.png",
+        "128" : "icon128.png"
     },
 
     "permissions": [

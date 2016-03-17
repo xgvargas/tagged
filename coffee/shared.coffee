@@ -36,20 +36,20 @@ shared.service 'favsService',
 
             qtext: m[2], qtags: t
 
-
         query: (search) ->
             d = @$q.defer()
             @valid.promise.then =>
-                {qtext, qtags} = @splitSearch search
-                if qtext != '' and qtext?
-                    r = @index.search qtext, expand: true
-                    f = (@favs[p.ref] for p in r)
-                else
-                    f = @favs
 
                 if not search
-                    d.resolve (item for item in f when item.tags.length == 0)
+                    d.resolve (item for item in @favs when item.tags.length == 0)
                 else
+                    {qtext, qtags} = @splitSearch search
+                    if qtext != '' and qtext?
+                        r = @index.search qtext, expand: true
+                        f = (@favs[p.ref] for p in r)
+                    else
+                        f = @favs
+
                     if qtags.length
                         d.resolve (item for item in f when qtags.every (el) -> el in item.tags)
                     else

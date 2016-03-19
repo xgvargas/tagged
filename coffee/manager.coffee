@@ -7,8 +7,6 @@ manager.config ($mdIconProvider) ->
 manager.controller 'MainCtrl',
     class
         search: ''
-        menu:
-            isOpen: false
 
         constructor: (@$scope, @favsService) ->
             @tags = @favsService.tags
@@ -41,7 +39,7 @@ manager.controller 'MainCtrl',
             # decodeURIComponent(escape(window.atob(b64)));
 
         toFile: ->
-            data = JSON.stringify @favsService.favs
+            data = JSON.stringify @favsService.favs, null, 4
             url = "data:application/json;base64,#{btoa unescape encodeURIComponent data}"
             chrome.downloads.download
                 url      : url

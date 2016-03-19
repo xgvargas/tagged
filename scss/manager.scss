@@ -6,10 +6,17 @@
     position:fixed !important
 }
 
-#search{
-    border-width: 0;
-    &:focus {
-        outline: none;
+#search-input{
+    margin: 0 50px;
+    white-space: nowrap;
+    padding-right: 110px;
+
+    input {
+        width:100%;
+        border-width: 0;
+        &:focus {
+            outline: none;
+        }
     }
 }
 
@@ -44,4 +51,8 @@
 
 .md-fab:hover, .md-fab.md-focused {
     background-color: #7EA6FF !important;
+}
+
+md-fab-speed-dial {
+    top: 2px !important;
 }

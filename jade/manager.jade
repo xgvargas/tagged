@@ -12,24 +12,24 @@ html(ng-app="manager")
       .md-toolbar-tools
         h2
           span Tagged
-        span(flex style="margin: 0 50px; white-space: nowrap;")
+        span#search-input(flex)
           md-icon(md-svg-icon="search_white") 
-          input#search(flex ng-model="vm.search" type="text" style="width:100%;")
+          input(flex ng-model="vm.search" type="text")
             
-    md-fab-speed-dial.md-fab-bottom-left.md-fling(md-direction="right" md-open="false")
-      md-fab-trigger
-        md-button.md-fab.md-warn(aria-label="menu")
-          md-icon(md-svg-icon="menu_black")
-      md-fab-actions
-        md-button.md-fab.md-raised.md-mini(aria-label="Sync" ng-click="vm.sync()")
-          md-tooltip Sync with server
-          md-icon(md-svg-icon="sync_black" aria-label="Sync")
-        md-button.md-fab.md-raised.md-mini(aria-label="Import" ng-click="vm.fromFile()")
-          md-tooltip Import from local JSON file
-          md-icon(md-svg-icon="input_black" aria-label="Import")
-        md-button.md-fab.md-raised.md-mini(aria-label="Export" ng-click="vm.toFile()")
-          md-tooltip Export to JSON
-          md-icon(md-svg-icon="save_black" aria-label="Export")
+        md-fab-speed-dial.md-fab-top-right.md-fling(md-direction="down" md-open="false")
+          md-fab-trigger
+            md-button.md-fab.md-warn(aria-label="menu")
+              md-icon(md-svg-icon="menu_black")
+          md-fab-actions
+            md-button.md-fab.md-raised.md-mini(aria-label="Sync" ng-click="vm.sync()")
+              md-tooltip(md-direction="left") Sync with server
+              md-icon(md-svg-icon="sync_black" aria-label="Sync")
+            md-button.md-fab.md-raised.md-mini(aria-label="Import" ng-click="vm.fromFile()")
+              md-tooltip(md-direction="left") Import from local JSON file
+              md-icon(md-svg-icon="input_black" aria-label="Import")
+            md-button.md-fab.md-raised.md-mini(aria-label="Export" ng-click="vm.toFile()")
+              md-tooltip(md-direction="left") Export to JSON
+              md-icon(md-svg-icon="save_black" aria-label="Export")
             
     div(style="padding-top:60px")
       md-content.md-padding(layout="row")

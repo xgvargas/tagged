@@ -7,6 +7,8 @@ manager.config ($mdIconProvider) ->
 manager.controller 'MainCtrl',
     class
         search: ''
+        menu:
+            isOpen: false
 
         constructor: (@$scope, @favsService) ->
             @tags = @favsService.tags
@@ -19,7 +21,7 @@ manager.controller 'MainCtrl',
                 .then (result) =>
                     @favs = result
 
-        filterBy: (tag) -> @search = '/' + tag
+        filterBy: (tag) -> @search = '\\' + tag
 
         open: (url) ->
             chrome.tabs.create
@@ -32,3 +34,16 @@ manager.controller 'MainCtrl',
         remove: (item) ->
 
         edit: (item) ->
+
+        sync: ->
+
+        fromFile: ->
+            # decodeURIComponent(escape(window.atob(b64)));
+
+        toFile: ->
+            data = JSON.stringify @favsService.favs
+            url = "data:application/json;base64,#{btoa unescape encodeURIComponent data}"
+            chrome.downloads.download
+                url      : url
+                saveAs   : true
+                filename : 'tagged-backup.json'

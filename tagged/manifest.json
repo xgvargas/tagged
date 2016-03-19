@@ -19,7 +19,8 @@
     "permissions": [
         "tabs",
         "storage",
-        "contextMenus"
+        "contextMenus",
+        "downloads"
     ],
 
     "browser_action": {

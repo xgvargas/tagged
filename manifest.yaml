@@ -14,9 +14,9 @@ icons:
 
 permissions:
     - tabs
-    # - storage
-    # - contextMenus
-    # - downloads
+    - storage
+    - contextMenus
+    - downloads
 
 background:
   persistent: false

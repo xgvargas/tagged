@@ -19,10 +19,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular-material": "^1.0.6",
-    "pouchdb": "^5.3.0"
-  },
-  "resolutions": {
-    "angular": "^1.4.8"
+    "materialize-tags": "^1.0.0",
+    "Materialize": "materialize#^0.97.6",
+    "elasticlunr.js": "^0.8.9",
+    "dustjs-linkedin": "^2.7.2"
   }
 }

@@ -1,70 +1,53 @@
 doctype html
-html(ng-app="manager")
+html
   head
     title Tagged
     meta(charset="utf-8")
-    meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
-    link(type="text/css" rel="stylesheet" href="lib/angular-material.min.css")
+    //- meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons")
+    link(type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,700")
+    link(type="text/css" rel="stylesheet" href="lib/materialize.min.css")
+    link(type="text/css" rel="stylesheet" href="lib/materialize-tags.min.css")
     link(type="text/css" rel="stylesheet" href="manager.css")
 
-  body(ng-controller="MainCtrl as vm" ng-cloak)
-    md-toolbar#my-toobar.md-warn
-      .md-toolbar-tools
-        h2
-          span Tagged
-        span#search-input(flex)
-          md-icon(md-svg-icon="search_white") 
-          input(flex ng-model="vm.search" type="text")
-            
-        md-fab-speed-dial.md-fab-top-right.md-fling(md-direction="down" md-open="false")
-          md-fab-trigger
-            md-button.md-fab.md-warn(aria-label="menu")
-              md-icon(md-svg-icon="menu_black")
-          md-fab-actions
-            md-button.md-fab.md-raised.md-mini(aria-label="Sync" ng-click="vm.sync()")
-              md-tooltip(md-direction="left") Sync with server
-              md-icon(md-svg-icon="sync_black" aria-label="Sync")
-            md-button.md-fab.md-raised.md-mini(aria-label="Import" ng-click="vm.fromFile()")
-              md-tooltip(md-direction="left") Import from local JSON file
-              md-icon(md-svg-icon="input_black" aria-label="Import")
-            md-button.md-fab.md-raised.md-mini(aria-label="Export" ng-click="vm.toFile()")
-              md-tooltip(md-direction="left") Export to JSON
-              md-icon(md-svg-icon="save_black" aria-label="Export")
-            
-    div(style="padding-top:60px")
-      md-content.md-padding(layout="row")
-        div#tags(flex="20" layout="column")
-          md-card
-            md-card-title
-              md-card-title-text
-                span.md-headline Tags
-            md-content.tag-drawer
-              span(ng-repeat="tag in vm.tags" ng-click="vm.filterBy(tag)") {{ tag }}
+  body
+    .navbar-fixed
+      nav
+        .nav-wrapper
+          .row
+            .col.s2
+              span.brand-logo Tagged
+            .col.s7.offset-s2
+              form.red.lighten-3
+                .input-field
+                  input#search(type="search" required)
+                  label(for="search")
+                    i.material-icons search
+                  //- i.material-icons close
+            .col.s3.right.hide-on-med-and-down
+              ul#nav-mobile.right
+                li: a#btn-sync(href="#") Sync
+                li: a#btn-export(href="#") Export
+                li: a#btn-import(href="#") Import
 
-        div#favs(flex="80" layout="column" flex-offset="20")
-          md-card
-            md-card-title
-              md-card-title-text
-                span.md-headline Bookmarks
-            md-list
-              md-list-item.md-3-line.noright(ng-repeat="fav in vm.favs" ng-click="vm.open(fav.url)")
-                img.md-avatar(ng-src="{{ fav.icon }}")
-                .md-list-item-text(layout="column")
-                  h3 {{ fav.title }}
-                  h4 {{ fav.description }}
-                  p
-                     span.tag-list(ng-repeat="tag in fav.tags") {{ tag }}
-                     | {{ fav.url }}
-                md-button.md-secondary.md-icon-button(aria-label="edit" ng-click="vm.edit()")
-                  md-icon(md-svg-icon="mode_edit_black")
-                md-button.md-secondary.md-icon-button(aria-label="delete" ng-click="vm.remove()")
-                  md-icon(md-svg-icon="delete_black")
-                md-divider(ng-if="!$last")
-              
-    script(src="lib/angular.min.js")
-    script(src="lib/angular-aria.min.js")
-    script(src="lib/angular-animate.min.js")
-    script(src="lib/angular-material.min.js")
+    //- .container
+    .row
+      .col.s3
+        .card
+          .card-content
+            span.card-title Tags
+            ul#tags
+      .col.s9
+        .card
+          .card-content
+            span.card-title Bookmarks
+            ul#saves.collection
+
+    script(src="lib/jquery.min.js")
+    script(src="lib/materialize.min.js")
+    script(src="lib/materialize-tags.min.js")
     script(src="lib/elasticlunr.min.js")
+    script(src="lib/dust-core.min.js")
+    script(src="templates.js")
     script(src="manager.js")
-    script(src="shared.js")

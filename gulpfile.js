@@ -7,21 +7,20 @@ var gutil      = require('gulp-util');
 var uglify     = require('gulp-uglify');
 var yaml       = require('gulp-yaml');
 var pug        = require('gulp-pug');
-var ngAnnotate = require('gulp-ng-annotate');
-var svgng      = require('gulp-svg-ngmaterial');
-var svgmin     = require('gulp-svgmin');
+var dust       = require('gulp-dust');
+var concat     = require('gulp-concat');
 
 
 var DEVMODE = true;
 var DST     = 'tagged/';
 
 
-gulp.task('default', ['sass', 'coffee', 'pug', 'yaml', 'icon'], function(){
+gulp.task('default', ['sass', 'coffee', 'pug', 'yaml', 'dust'], function(){
     gulp.watch('scss/**/*.scss', ['sass']);
     gulp.watch('coffee/**/*.coffee', ['coffee']);
     gulp.watch('pug/**/*.jade', ['pug']);
-    gulp.watch('./**/*.yaml', ['yaml']);
-    gulp.watch('svg/icons/**/*.svg', ['icon']);
+    gulp.watch(['manifest.yaml', '_locales/**/*.yaml'], ['yaml']);
+    gulp.watch('dust/*.dust', ['dust']);
 });
 
 gulp.task('dist', function(done){
@@ -30,7 +29,14 @@ gulp.task('dist', function(done){
     done();
 });
 
-gulp.task('build', ['sass', 'coffee', 'pug', 'png', 'yaml', 'icon']);
+gulp.task('build', ['sass', 'coffee', 'pug', 'png', 'yaml', 'dust']);
+
+gulp.task('dust', function(){
+    return gulp.src('dust/*.dust')
+        .pipe(dust())
+        .pipe(concat('templates.js'))
+        .pipe(gulp.dest(DST));
+});
 
 gulp.task('sass', function() {
     return gulp.src('scss/*.scss')
@@ -46,7 +52,6 @@ gulp.task('coffee', function() {
         .pipe(DEVMODE ? sourcemaps.init() : gutil.noop())
         .pipe(coffee({ bare: false })) .on('error', dealWithError)
         .pipe(DEVMODE ? sourcemaps.write() : gutil.noop())
-        .pipe(ngAnnotate())
         .pipe(DEVMODE ? gutil.noop() : uglify()) .on('error', dealWithError)
         .pipe(gulp.dest(DST));
 });
@@ -62,7 +67,7 @@ gulp.task('pug', function() {
 });
 
 gulp.task('yaml', function(){
-    return gulp.src('**/*.yaml')
+    return gulp.src(['manifest.yaml', '_locales/**/*.yaml'], {base: '.'})
         .pipe(yaml({
             space: DEVMODE ? 4 : 0
         }))
@@ -88,17 +93,6 @@ gulp.task('png', function(done){
             replace   : [{from: '#f2f2f2', to: 'none'}],
         });
     }
-});
-
-gulp.task('icon', function(){
-    return gulp.src('svg/icons/**/*.svg')
-        .pipe(svgmin({
-            js2svg: {
-                pretty: DEVMODE
-            }
-        }))
-        .pipe(svgng({ filename: 'mdicons.svg' }))
-        .pipe(gulp.dest(DST));
 });
 
 

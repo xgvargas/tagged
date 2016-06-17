@@ -1,0 +1,7 @@
+{#.}
+    <li class="collection-item avatar">
+        <img src="{icon}">
+        <span class="title">{title}</span>
+        <p>{url}</p>
+    </li>
+{/.}

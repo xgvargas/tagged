@@ -1,47 +1,72 @@
+bgPage = undefined
 
-manager = angular.module 'manager', ['ngMaterial', 'shared']
+download = (data) ->
+    data = JSON.stringify data, null, 4
+    url = "data:application/json;base64,#{btoa unescape encodeURIComponent data}"
+    chrome.downloads.download
+        url      : url
+        saveAs   : true
+        filename : 'tagged-backup.json'
 
-manager.config ($mdIconProvider) ->
-    $mdIconProvider.defaultIconSet 'mdicons.svg'
+upload = () ->
+    # decodeURIComponent(escape(window.atob(b64)));
 
-manager.controller 'MainCtrl',
-    class
-        search: ''
+open = (url) ->
+    chrome.tabs.create
+        url: url
 
-        constructor: (@$scope, @favsService) ->
-            @tags = @favsService.tags
-            @favsService.query  ''
-            .then (favs) =>
-                @favs = favs
+filterBy = (tag) ->
+    $('#search').val("\\#{tag}").keydown()
 
-            @$scope.$watch (=> @search), (val, old) =>
-                @favsService.query val
-                .then (result) =>
-                    @favs = result
+showTags = () ->
+    dust.render 'tag', bgPage.bookmarks.tags, (err, output) ->
+        $('#tags').html output
 
-        filterBy: (tag) -> @search = '\\' + tag
+showBookmarks = (query) ->
+    bgPage.bookmarks.query query
+    .then (favs) ->
+        dust.render 'favitem', favs, (err, output) ->
+            $('#saves').html(output)
 
-        open: (url) ->
-            chrome.tabs.create
-                url: url
 
-        # openMenu: ($mdOpenMenu, ev) ->
-        #     @sender = ev
-        #     $mdOpenMenu ev
+$ ->
 
-        remove: (item) ->
+    chrome.runtime.getBackgroundPage (bg) ->
+        bgPage = bg
+        bgPage.bookmarks.ready.done ->
 
-        edit: (item) ->
+            showTags()
+            showBookmarks ''
 
-        sync: ->
+    $('#tags').on 'click', 'li', () ->
+        filterBy $(@).text()
 
-        fromFile: ->
-            # decodeURIComponent(escape(window.atob(b64)));
+    $('#search').keydown () ->
+        setTimeout ->
+            showBookmarks $('#search').val()
 
-        toFile: ->
-            data = JSON.stringify @favsService.favs, null, 4
-            url = "data:application/json;base64,#{btoa unescape encodeURIComponent data}"
-            chrome.downloads.download
-                url      : url
-                saveAs   : true
-                filename : 'tagged-backup.json'
+
+
+# manager = angular.module 'manager', ['ngMaterial', 'shared']
+
+# manager.config ($mdIconProvider) ->
+#     $mdIconProvider.defaultIconSet 'mdicons.svg'
+
+# manager.controller 'MainCtrl',
+#     class
+#         search: ''
+
+#         constructor: (@$scope, @favsService) ->
+#             @tags = @favsService.tags
+#             @favsService.query  ''
+#             .then (favs) =>
+#                 @favs = favs
+
+#             @$scope.$watch (=> @search), (val, old) =>
+#                 @favsService.query val
+#                 .then (result) =>
+#                     @favs = result
+
+
+
+

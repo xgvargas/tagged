@@ -1,58 +1,25 @@
-#my-toobar{
-    position:fixed !important
-}
+/**!
+*/
 
-#tags{
-    position:fixed !important
-}
-
-#search-input{
-    margin: 0 50px;
-    white-space: nowrap;
-    padding-right: 110px;
-
-    input {
-        width:100%;
-        border-width: 0;
-        &:focus {
-            outline: none;
-        }
-    }
-}
-
-.tag-list{
-    background-color: #9AD8BE;
-    margin: 0 4px;
-    padding: 0 5px;
-    border-radius: 5px;
-
-    &:last-of-type{
-        margin-right: 15px;
-    }
-}
-
-.tag-drawer{
-    padding: 0px 8px 8px 12px;
-
-    span{
+#tags {
+    li {
+        font-size: 1.4em;
         display: inline-block;
-        // margin-left: 10px;
-        margin-right: 6px;
-        font-size: 170%;
-        padding: 2px;
-        border-radius: 10%;
+        // margin-right: 6px;
         cursor: pointer;
+        border-radius: 10%;
+        padding: 2px;
 
-        &:hover{
-            background-color: #ddd
+        &:hover, .active {
+            background-color: #ddd;
         }
     }
 }
 
-.md-fab:hover, .md-fab.md-focused {
-    background-color: #7EA6FF !important;
-}
+nav .input-field {
+    margin-top: 21px;
 
-md-fab-speed-dial {
-    top: 2px !important;
+    label {
+        top: -19px;
+    }
 }

@@ -1,28 +1,18 @@
 doctype html
-html(ng-app="popup")
+html
   head
     title Tagged
-    meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
-    link(type="text/css" rel="stylesheet" href="lib/angular-material.min.css")
+    //- meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(type="text/css" rel="stylesheet" href="lib/materialize.min.css")
+    link(type="text/css" rel="stylesheet" href="lib/materialize-tags.min.css")
     link(type="text/css" rel="stylesheet" href="popup.css")
 
-  body(ng-controller="MainCtrl as vm")
-    md-content(layout-align="start stretch" layout="column")
-      md-input-container.md-block
-        label {{ vm.txt.title }}
-        input(ng-model="vm.fav.title")
-      md-input-container.md-block
-        label {{ vm.txt.description }}
-        textarea(ng-model="vm.fav.description" md-maxlength="150" rows="5" md-select-on-focus)
-      md-chips(ng-model="vm.fav.tags" placeholder="Enter a tag" secondary-placeholder="+Tag")
-      md-button.md-raised.md-warn(ng-click="vm.add()" ng-hide="vm.done")
-        md-icon(md-svg-icon="add_white")
-        | {{ vm.txt.add }} 
+  body
+    p oi
 
-    script(src="lib/angular.min.js")
-    script(src="lib/angular-aria.min.js")
-    script(src="lib/angular-animate.min.js")
-    script(src="lib/angular-material.min.js")
+    script(src="lib/jquery.min.js")
+    script(src="lib/materialize.min.js")
+    script(src="lib/materialize-tags.min.js")
     script(src="lib/elasticlunr.min.js")
     script(src="popup.js")
-    script(src="shared.js")

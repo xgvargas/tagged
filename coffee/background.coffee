@@ -76,14 +76,10 @@ class Bookmarks
 
 
 @bookmarks = new Bookmarks()
-# @bookmarks.ready.then ->
-#     console.log @bookmarks.tags
+
 
 #####################################################################
 
-
-# chrome.omnibox.onInputStarted.addListener ->
-# chrome.omnibox.onInputCancelled.addListener ->
 
 chrome.omnibox.onInputChanged.addListener (text, suggest) ->
     @bookmarks.query text
@@ -104,7 +100,3 @@ chrome.contextMenus.create
 
 chrome.contextMenus.onClicked.addListener (info, tab) ->
     chrome.tabs.create url: chrome.extension.getURL 'manager.html'
-
-
-#####################################################################
-

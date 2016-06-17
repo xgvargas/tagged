@@ -30,11 +30,9 @@ showBookmarks = (query) ->
 
 
 $ ->
-
     chrome.runtime.getBackgroundPage (bg) ->
         bgPage = bg
         bgPage.bookmarks.ready.done ->
-
             showTags()
             showBookmarks ''
 
@@ -44,29 +42,3 @@ $ ->
     $('#search').keydown () ->
         setTimeout ->
             showBookmarks $('#search').val()
-
-
-
-# manager = angular.module 'manager', ['ngMaterial', 'shared']
-
-# manager.config ($mdIconProvider) ->
-#     $mdIconProvider.defaultIconSet 'mdicons.svg'
-
-# manager.controller 'MainCtrl',
-#     class
-#         search: ''
-
-#         constructor: (@$scope, @favsService) ->
-#             @tags = @favsService.tags
-#             @favsService.query  ''
-#             .then (favs) =>
-#                 @favs = favs
-
-#             @$scope.$watch (=> @search), (val, old) =>
-#                 @favsService.query val
-#                 .then (result) =>
-#                     @favs = result
-
-
-
-

@@ -3,5 +3,6 @@
         <img src="{icon}">
         <span class="title">{title}</span>
         <p>{url}</p>
+        {#tags}<spam>{.}</spam>{/tags}
     </li>
 {/.}

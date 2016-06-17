@@ -1,8 +1,18 @@
 {#.}
-    <li class="collection-item avatar">
-        <img src="{icon}">
-        <span class="title">{title}</span>
-        <p>{url}</p>
-        {#tags}<spam>{.}</spam>{/tags}
+    <li data-ref="{id}">
+        <div class="row valign-wrapper">
+            <div class="col s1">
+                <img src="{icon}">
+            </div>
+            <div class="col s9">
+                <div class="title">{title}</div>
+                <p>{url}</p>
+                {#tags}<span>{.}</span>{/tags}
+            </div>
+            <div class="col s2 buttons">
+                <a class="waves-effect waves-teal btn-flat edit"><i class="material-icons large">mode_edit</i></a>
+                <a class="waves-effect waves-teal btn-flat delete"><i class="material-icons large">delete</i></a>
+            </div>
+        </div>
     </li>
 {/.}

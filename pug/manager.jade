@@ -42,7 +42,30 @@ html
         .card
           .card-content
             span.card-title Bookmarks
-            ul#saves.collection
+            ul#saves
+
+    #editor.modal
+      .modal-content
+        h4 Edit
+        form
+          .row
+            .col.s12.input-field
+              input#fav-title.validate(type="text")
+              label(for="fav-title") Title
+            .col.s12.input-field
+              input#fav-tags.validate(type="text" data-role="materialtags")
+              label(for="fav-tags") Tags
+            .col.s6.input-field
+              input#fav-url.validate(type="text")
+              label(for="fav-url") URL
+            .col.s6.input-field
+              input#fav-description.validate(type="text")
+              //- textarea#description.materialize-textarea
+              label(for="fav-description") Description
+
+      .modal-footer
+        a#btn-save-edit.modal-action.waves-effect.waves-green.btn-flat(href="#!") Save
+        a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#!") Cancel
 
     script(src="lib/jquery.min.js")
     script(src="lib/materialize.min.js")

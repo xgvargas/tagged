@@ -33,7 +33,7 @@ gulp.task('build', ['sass', 'coffee', 'pug', 'png', 'yaml', 'dust']);
 
 gulp.task('dust', function(){
     return gulp.src('dust/*.dust')
-        .pipe(dust())
+        .pipe(dust()) .on('error', dealWithError)
         .pipe(concat('templates.js'))
         .pipe(gulp.dest(DST));
 });
@@ -62,7 +62,7 @@ gulp.task('pug', function() {
             locals: {},
             client: false,
             pretty: DEVMODE,
-        })) .on('error', gutil.log)
+        })) .on('error', dealWithError)
         .pipe(gulp.dest(DST));
 });
 

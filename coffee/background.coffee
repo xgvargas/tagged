@@ -2,8 +2,24 @@
 class Bookmarks
     favs: []
     tags: []
+    pins: []
+    sess: []
 
-    constructor: () ->
+    constructor: () -> @load()
+
+    getIndex: () ->
+        index = elasticlunr ->
+            @addField     'title'
+            @addField     'description'
+            @addField     'url'
+            @setRef       'id'
+            @saveDocument false
+        elasticlunr.addStopWords [
+            'um', 'uma', 'a', 'as', 'o', 'os',
+            ]
+        index
+
+    load: () ->
         @ready = $.Deferred()
         @index = @getIndex()
         chrome.storage.local.get {favs: []}, (items) =>
@@ -16,26 +32,31 @@ class Bookmarks
             @tags.sort()
             @ready.resolve()
 
-    getIndex: () ->
-        index = elasticlunr ->
-            @addField 'title'
-            @addField 'description'
-            @addField 'url'
-            @setRef 'id'
-            @saveDocument false
-        elasticlunr.addStopWords [
-            'um', 'uma', 'a', 'as', 'o', 'os',
-            ]
-        index
+    save: () ->
+        d = $.Deferred()
+        # TODO apagar valores desnecessarios temporarios....
+        chrome.storage.local.set {favs: @favs}, -> d.resolve()
+        d.promise()
 
     add: (fav) ->
-        d = $.Deferred()
         @favs.push fav
         for tag in fav.tags
             @tags.push tag if tag not in @tags
         @tags.sort()
-        chrome.storage.local.set {favs: @favs}, -> d.resolve()
-        d.promise()
+        @save()
+
+    update: (id, fav) ->
+        fav.id = id
+        @index.update fav
+        @favs[id] = fav
+        for tag in fav.tags
+            @tags.push tag if tag not in @tags
+        @save()
+
+    delete: (id) ->
+        @index.removeDoc @favs[id]
+        # TODO
+        @save()
 
     splitSearch: (search) ->
         # s1 = /// ^ ( (?: \s* \[ [^\]]+ \])* ) \s* (.*) $///

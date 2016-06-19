@@ -1,11 +1,12 @@
 
 class Bookmarks
-    favs: []
-    tags: []
-    pins: []
-    sess: []
 
-    constructor: () -> @load()
+    constructor: () ->
+        @favs = []
+        @tags = []
+        @pins = []
+        @sess = []
+        @load()
 
     getIndex: () ->
         index = elasticlunr ->
@@ -47,7 +48,10 @@ class Bookmarks
 
     update: (id, fav) ->
         fav.id = id
-        @index.update fav
+        fav.tags = [] if not fav.tags?
+        console.log @favs[22]
+        console.log fav
+        @index.updateDoc fav
         @favs[id] = fav
         for tag in fav.tags
             @tags.push tag if tag not in @tags

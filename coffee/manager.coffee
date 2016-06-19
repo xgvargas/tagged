@@ -43,7 +43,7 @@ $ ->
     # abre e carrega o modal
     editing_idx = null
     $('#saves').on 'click', '.edit', () ->
-        editing_idx = $(@).parents('li').attr('data-ref')
+        editing_idx = parseInt $(@).parents('li').attr('data-ref')
         console.log "edit: ", editing_idx, bgPage.bookmarks.favs[editing_idx]
         $('#editor').openModal
             ready: () ->
@@ -65,9 +65,10 @@ $ ->
             tags        : $('#fav-tags').materialtags 'items'
         console.log fav
         bgPage.bookmarks.update editing_idx, fav
-        $('#editor').closeModal()
-        showTags()
-        showBookmarks $('#search').val()
+        .then () ->
+            $('#editor').closeModal()
+            showTags()
+            showBookmarks $('#search').val()
 
     # apaga o fav
     $('#saves').on 'click', '.delete', () ->

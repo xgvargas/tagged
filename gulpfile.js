@@ -11,8 +11,20 @@ var dust       = require('gulp-dust');
 var concat     = require('gulp-concat');
 
 
+var DST    = 'tagged/';
+var VENDOR = [
+    './bower_components/dustjs-linkedin/dist/dust-core.min.js',
+    './bower_components/elasticlunr.js/elasticlunr.min.js',
+    './bower_components/jquery/dist/jquery.min.js',
+    './bower_components/Materialize/dist/js/materialize.min.js',
+    './bower_components/Materialize/dist/css/materialize.min.css',
+    './bower_components/Materialize/dist/font',
+    './bower_components/materialize-tags/dist/js/materialize-tags.min.js',
+    './bower_components/materialize-tags/dist/css/materialize-tags.min.css',
+];
+
+
 var DEVMODE = true;
-var DST     = 'tagged/';
 
 
 gulp.task('default', ['sass', 'coffee', 'pug', 'yaml', 'dust'], function(){
@@ -29,12 +41,21 @@ gulp.task('dist', function(done){
     done();
 });
 
-gulp.task('build', ['sass', 'coffee', 'pug', 'png', 'yaml', 'dust']);
+gulp.task('build', ['vendor', 'sass', 'coffee', 'pug', 'yaml', 'dust', 'png']);
+
+gulp.task('vendor', function(done){
+    sh.mkdir('-p', DST+'/lib/');
+    for(var i=0; i < VENDOR.length; i++){
+        sh.cp('-fr', VENDOR[i], DST+'/lib/');
+    }
+    done();
+});
 
 gulp.task('dust', function(){
     return gulp.src('dust/*.dust')
         .pipe(dust()) .on('error', dealWithError)
         .pipe(concat('templates.js'))
+        .pipe(DEVMODE ? gutil.noop() : uglify()) .on('error', dealWithError)
         .pipe(gulp.dest(DST));
 });
 

@@ -8,45 +8,43 @@ download = (data) ->
         saveAs   : true
         filename : 'tagged-backup.json'
 
-upload = () ->
+upload = ->
     # decodeURIComponent(escape(window.atob(b64)));
 
-showTags = () ->
-    dust.render 'tag', bgPage.bookmarks.tags, (err, output) ->
-        $('#tags').html output
+showTags = ->
+    dust.render 'tag', bgPage.bookmarks.tags, (err, output) -> $('#tags').html output
 
 showBookmarks = (query) ->
     bgPage.bookmarks.query query
     .then (favs) ->
-        dust.render 'favitem', favs, (err, output) ->
-            $('#saves').html(output)
+        dust.render 'favitem', favs, (err, output) -> $('#saves').html output
 
 
 $ ->
     chrome.runtime.getBackgroundPage (bg) ->
         bgPage = bg
-        bgPage.bookmarks.ready.done () ->
+        bgPage.bookmarks.ready.done ->
             showTags()
             showBookmarks ''
 
     # filtra favs pela tag clicada
-    $('#tags').on 'click', 'li', () -> $('#search').val("\\#{$(@).text()}").keydown()
+    $('#tags').on 'click', 'li', -> $('#search').val("\\#{$(@).text()}").keydown()
 
     # filtra favs quando search eh editado
-    $('#search').keydown () ->
+    $('#search').keydown ->
         setTimeout ->
             showBookmarks $('#search').val()
 
     # baixa uma copia json dos dados
-    $('#btn-export').click () -> download()
+    $('#btn-export').click -> download()
 
     # abre e carrega o modal
     editing_idx = null
-    $('#saves').on 'click', '.edit', () ->
+    $('#saves').on 'click', '.edit', ->
         editing_idx = parseInt $(@).parents('li').attr('data-ref')
         console.log "edit: ", editing_idx, bgPage.bookmarks.favs[editing_idx]
         $('#editor').openModal
-            ready: () ->
+            ready: ->
                 $('#fav-title').val bgPage.bookmarks.favs[editing_idx].title
                 $('#fav-url').val bgPage.bookmarks.favs[editing_idx].url
                 $('#fav-description').val bgPage.bookmarks.favs[editing_idx].description
@@ -56,7 +54,7 @@ $ ->
         false
 
     # valida e salva o modal
-    $('#editor').on 'click', '#btn-save-edit', () ->
+    $('#editor').on 'click', '#btn-save-edit', ->
         console.log 'salvando a pemba!'
         fav =
             title       : $('#fav-title').val()
@@ -65,17 +63,17 @@ $ ->
             tags        : $('#fav-tags').materialtags 'items'
         console.log fav
         bgPage.bookmarks.update editing_idx, fav
-        .then () ->
+        .then ->
             $('#editor').closeModal()
             showTags()
             showBookmarks $('#search').val()
 
     # apaga o fav
-    $('#saves').on 'click', '.delete', () ->
+    $('#saves').on 'click', '.delete', ->
         console.log "delete: ", $(@).parents('li').attr('data-ref')
         false
 
     # abre aba com o fav
-    $('#saves').on 'click', 'li', () ->
+    $('#saves').on 'click', 'li', ->
         # chrome.tabs.create url: $(@).find('p').text()
         console.log $(@).find('p').text()

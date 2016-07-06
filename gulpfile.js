@@ -30,7 +30,7 @@ var DEVMODE = true;
 gulp.task('default', ['sass', 'coffee', 'pug', 'yaml', 'dust'], function(){
     gulp.watch('scss/**/*.scss', ['sass']);
     gulp.watch('coffee/**/*.coffee', ['coffee']);
-    gulp.watch('pug/**/*.jade', ['pug']);
+    gulp.watch('pug/**/*.pug', ['pug']);
     gulp.watch(['manifest.yaml', '_locales/**/*.yaml'], ['yaml']);
     gulp.watch('dust/*.dust', ['dust']);
 });
@@ -78,7 +78,7 @@ gulp.task('coffee', function() {
 });
 
 gulp.task('pug', function() {
-    return gulp.src('pug/*.jade')  //oops!
+    return gulp.src('pug/*.pug')  //oops!
         .pipe(pug({
             locals: {},
             client: false,
@@ -86,6 +86,20 @@ gulp.task('pug', function() {
         })) .on('error', dealWithError)
         .pipe(gulp.dest(DST));
 });
+
+// gulp.task('template', function() {
+//     return gulp.src('pug-cli/*.pug')  //oops!
+//         .pipe(pug({
+//             locals: {},
+//             client: true,
+//             compileDebug: false,
+//             pretty: DEVMODE,
+//         })) .on('error', dealWithError)
+//         .pipe(concat('templates-pug.js'))
+//         // .pipe(DEVMODE ? gutil.noop() : uglify()) .on('error', dealWithError)
+//         .pipe(uglify()) .on('error', dealWithError)
+//         .pipe(gulp.dest(DST));
+// });
 
 gulp.task('yaml', function(){
     return gulp.src(['manifest.yaml', '_locales/**/*.yaml'], {base: '.'})

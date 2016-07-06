@@ -53,6 +53,7 @@ class Bookmarks
         console.log fav
         @index.updateDoc fav
         @favs[id] = fav
+        console.log @favs[22]
         for tag in fav.tags
             @tags.push tag if tag not in @tags
         @save()
@@ -94,6 +95,8 @@ class Bookmarks
                     d.resolve (item for item in f when qtags.every (el) -> el in item.tags)
                 else
                     d.resolve f
+            return
+
         d.promise()
 
 

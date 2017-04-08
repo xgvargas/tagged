@@ -21,11 +21,7 @@ module.exports = config = {
 
     resolve: {
         extensions: ['.coffee'],
-        modules: [
-            // path.join(__dirname, 'src'),
-            __dirname,
-            'node_modules',
-        ],
+        modules: [__dirname, 'node_modules'],
     },
 
     output: {
@@ -42,10 +38,7 @@ module.exports = config = {
 
     // devtool: 'cheap-module-eval-source-map',
     // watch: true,
-    watchOptions: {
-        aggregateTimeout: 500,
-        ignored: /node_modules/,
-    },
+    watchOptions: {aggregateTimeout: 500, ignored: /node_modules/},
 
     module: {
         rules: [
@@ -59,7 +52,7 @@ module.exports = config = {
 
 if(process.env.NODE_ENV == 'production'){
 
-    console.log('\n--->> Executando em modo PRODUÇÃO <<---\n');
+    console.log('----->> Executando em modo PRODUÇÃO <<-----\n');
 
     config.watch = false;
 
@@ -82,7 +75,7 @@ if(process.env.NODE_ENV == 'production'){
                 + '\nrev: ' + git_rev + '-' + git_hash + ' de ' + git_date
                 + '\n@author xgvargas'
                 + '\n@version ' + version
-                + '\n@copyright (C) 2016 Gustavo Vargas'
+                + '\n@copyright (C) 2017 Gustavo Vargas'
                 + '\n@license MIT',
             raw: false,
             entryOnly: true,

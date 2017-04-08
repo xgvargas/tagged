@@ -1,8 +1,2 @@
-/tagged/*.js
-/tagged/*.css
-/tagged/*.html
 /node_modules
-tagged/*.png
-/bower_components
-/tagged/*.svg
-/tagged
+/build

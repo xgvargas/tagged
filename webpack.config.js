@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+// const nodeExternals = require('webpack-node-externals');
 const execSync = require('child_process').execSync;
 
 const version = require('./package.json').version;
@@ -21,7 +22,8 @@ module.exports = config = {
     resolve: {
         extensions: ['.coffee'],
         modules: [
-            path.join(__dirname, 'src'),
+            // path.join(__dirname, 'src'),
+            __dirname,
             'node_modules',
         ],
     },
@@ -29,15 +31,16 @@ module.exports = config = {
     output: {
         path: path.join(__dirname, 'build'),
         filename: '[name].js',
-        libraryTarget: 'commonjs2',
+        // libraryTarget: 'commonjs2',
     },
+
+    // externals: [nodeExternals()],
 
     target: 'web',
 
-    devtool: 'cheap-module-eval-source-map',
-
     stats: "minimal",
 
+    // devtool: 'cheap-module-eval-source-map',
     // watch: true,
     watchOptions: {
         aggregateTimeout: 500,
@@ -47,8 +50,8 @@ module.exports = config = {
     module: {
         rules: [
             {test: /\.coffee$/, use:['coffee-loader']},
-            {test: /\.yaml/, use:[{loader:'file-loader', options:{name:'[path][name].json'}}, 'yaml-loader']},
-            {test: /\.pug/, use:[{loader:'file-loader', options:{name:'[name].html'}}, 'pug-html-loader']},
+            {test: /\.yaml$/, use:[{loader:'file-loader', options:{name:'[path][name].json'}}, 'yaml-loader']},
+            {test: /\.pug$/, use:[{loader:'file-loader', options:{name:'[name].html'}}, 'pug-html-loader']},
         ]
     },
 
@@ -59,18 +62,21 @@ if(process.env.NODE_ENV == 'production'){
     console.log('\n--->> Executando em modo PRODUÇÃO <<---\n');
 
     config.watch = false;
+
     config.devtool = 'source-map';
 
     config.plugins = [
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
+
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
                 warnings: true,
             },
         }),
+
         new webpack.BannerPlugin({
             banner: 'Tagged'
                 + '\nrev: ' + git_rev + '-' + git_hash + ' de ' + git_date

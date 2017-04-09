@@ -4,7 +4,8 @@
   "description": "A Tag bookmark for web browsers",
   "scripts": {
     "dev": "webpack",
-    "build": "export NODE_ENV=production && webpack"
+    "build": "npm run image && export NODE_ENV=production && webpack",
+    "image": "mkdir -p build && svg-m2png -vfo build -t \"#f2f2f2\" res/icons.svg"
   },
   "author": "Gustavo Vargas <xgvargas@gmail.com>",
   "license": "MIT",

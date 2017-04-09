@@ -16,7 +16,7 @@ module.exports = config = {
         background: './background.coffee',
         popup: './popup.coffee',
         // options: './options.coffee',
-        // manager: './manager.coffee',
+        manager: './manager.coffee',
     },
 
     resolve: {
@@ -44,7 +44,23 @@ module.exports = config = {
         rules: [
             {test: /\.coffee$/, use:['coffee-loader']},
             {test: /\.yaml$/, use:[{loader:'file-loader', options:{name:'[path][name].json'}}, 'yaml-loader']},
-            {test: /\.pug$/, use:[{loader:'file-loader', options:{name:'[name].html'}}, 'pug-html-loader']},
+            {test: /\.pug$/, use: [
+                {loader: 'file-loader', options: {name: '[name].html'}},
+                'extract-loader',
+                {loader: 'html-loader', options: {attrs: ['img:src', 'link:href']}},
+                {loader: 'pug-html-loader', options: {pretty: true}},
+            ]},
+            {test: /\.css$/, use: [
+                {loader: 'file-loader', options: {name: '[name].css'}},
+                'extract-loader',
+                'css-loader',
+            ]},
+            {test: /\.sass$/, use: [
+                {loader: 'file-loader', options: {name: '[name].css'}},
+                'extract-loader',
+                'css-loader',
+                {loader: 'sass-loader', options: {indentedSyntax: true}},
+            ]},
         ]
     },
 
